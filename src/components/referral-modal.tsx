@@ -11,6 +11,7 @@ type ReferralModalProps = {
 };
 
 const REFERRAL_ID_KEY = "aklile_referral_id_v1";
+const REFERRAL_URL_KEY = "aklile_referral_url_v1";
 
 function generateReferralCode() {
   const randomPart =
@@ -26,16 +27,48 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
   const titleId = useId();
   const [copied, setCopied] = useState(false);
   const [url, setUrl] = useState(() => referralShareUrl());
+  const [loadingLink, setLoadingLink] = useState(false);
+
+  const ensureReferralLink = useCallback(async () => {
+    if (typeof window === "undefined") return;
+
+    const storedCode = window.localStorage.getItem(REFERRAL_ID_KEY);
+    const storedUrl = window.localStorage.getItem(REFERRAL_URL_KEY);
+    if (storedCode) {
+      setUrl(storedUrl ?? referralShareUrl(storedCode));
+      return;
+    }
+
+    setLoadingLink(true);
+    try {
+      const response = await fetch("/api/referrals/create", {
+        method: "POST",
+        cache: "no-store",
+      });
+      const data = (await response.json()) as { code?: string; url?: string };
+      if (response.ok && data.code) {
+        const referralUrl = data.url ?? referralShareUrl(data.code);
+        window.localStorage.setItem(REFERRAL_ID_KEY, data.code);
+        window.localStorage.setItem(REFERRAL_URL_KEY, referralUrl);
+        setUrl(referralUrl);
+      } else {
+        throw new Error("API did not return a referral code.");
+      }
+    } catch {
+      // Fallback keeps the flow usable even if DB/API is temporarily unavailable.
+      const referralCode = generateReferralCode();
+      const fallbackUrl = referralShareUrl(referralCode);
+      window.localStorage.setItem(REFERRAL_ID_KEY, referralCode);
+      window.localStorage.setItem(REFERRAL_URL_KEY, fallbackUrl);
+      setUrl(fallbackUrl);
+    } finally {
+      setLoadingLink(false);
+    }
+  }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    let referralCode = window.localStorage.getItem(REFERRAL_ID_KEY);
-    if (!referralCode) {
-      referralCode = generateReferralCode();
-      window.localStorage.setItem(REFERRAL_ID_KEY, referralCode);
-    }
-    setUrl(referralShareUrl(referralCode));
-  }, []);
+    void ensureReferralLink();
+  }, [ensureReferralLink]);
 
   useEffect(() => {
     const el = dialogRef.current;
@@ -53,6 +86,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
   }, [onClose]);
 
   const copy = useCallback(async () => {
+    if (loadingLink) return;
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -60,7 +94,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
     } catch {
       setCopied(false);
     }
-  }, [url]);
+  }, [loadingLink, url]);
 
   return (
     <dialog
@@ -103,11 +137,12 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
 
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="min-w-0 flex-1 truncate rounded-xl border border-white/[0.1] bg-bg-primary/80 px-3 py-2.5 text-center font-mono text-[11px] text-text-secondary sm:text-left">
-            {url}
+            {loadingLink ? "Generating referral link..." : url}
           </div>
           <button
             type="button"
             onClick={copy}
+            disabled={loadingLink}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
           >
             {copied ? (

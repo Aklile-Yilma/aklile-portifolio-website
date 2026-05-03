@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
+import { VisitTracker } from "@/components/analytics/visit-tracker";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { siteConfig } from "@/lib/site-config";
 
@@ -54,7 +56,12 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Suspense fallback={null}>
+            <VisitTracker />
+          </Suspense>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Referral + Visit Tracking
+
+This project includes server-side tracking for:
+
+- unique referral link generation (`/api/referrals/create`)
+- website visit logging (`/api/track/visit`)
+- visitor/session/referral cookies set in middleware
+
+### Database setup (Neon / Postgres)
+
+Set one of these environment variables in Vercel:
+
+- `DATABASE_URL` (recommended)
+- `POSTGRES_URL` (fallback)
+
+On first request, the app creates tracking tables automatically:
+
+- `referrals`
+- `website_visits`
