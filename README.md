@@ -50,6 +50,20 @@ Set one of these environment variables in Vercel:
 - `DATABASE_URL` (recommended)
 - `POSTGRES_URL` (fallback)
 
+### Stats dashboard auth
+
+The protected stats dashboard is available at:
+
+- `/stats`
+
+Set this server-only password env var:
+
+- `STATS_DASHBOARD_PASSWORD`
+
+Optional (recommended) extra signing secret:
+
+- `STATS_SESSION_SECRET`
+
 On first request, the app creates tracking tables automatically:
 
 - `referrals`
