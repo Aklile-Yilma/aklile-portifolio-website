@@ -1,0 +1,125 @@
+{
+  "projectId": "1712867640188403712",
+  "slug": "e-learning-platform-for-a2sv-communicty",
+  "title": "E-learning platform for A2sv Communicty",
+  "generatedAt": "2026-04-13T16:43:19.387Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "606b0565-89eb-4501-beb5-eec7806ffa4d",
+      "role": "cover",
+      "filename": "606b0565-89eb-4501-beb5-eec7806ffa4d.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "11d887e5-532f-4bf2-ab0b-0c07b1ae6c58",
+      "role": "gallery",
+      "filename": "11d887e5-532f-4bf2-ab0b-0c07b1ae6c58.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1973824053757333504",
+      "attachmentName": "Screenshot from 2025-10-02 21-50-16.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "41c79ba4-7b43-446a-8f02-d112c46701b8",
+      "role": "gallery",
+      "filename": "41c79ba4-7b43-446a-8f02-d112c46701b8.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1712867640188403713",
+      "attachmentName": "View Profile.png",
+      "attachmentTitle": "User Profile Page"
+    },
+    {
+      "index": 3,
+      "uuid": "6c59cffa-c67b-4b85-862c-e0cfd8cc86cb",
+      "role": "gallery",
+      "filename": "6c59cffa-c67b-4b85-862c-e0cfd8cc86cb.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1712867640188403714",
+      "attachmentName": "Edit Profile.png",
+      "attachmentTitle": "Edit Profile"
+    },
+    {
+      "index": 4,
+      "uuid": "3d9095d2-c59f-4bcc-8ffe-3a5aa8461187",
+      "role": "gallery",
+      "filename": "3d9095d2-c59f-4bcc-8ffe-3a5aa8461187.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1712867640188403715",
+      "attachmentName": "Home Page.png",
+      "attachmentTitle": "Programming Contest Page"
+    },
+    {
+      "index": 5,
+      "uuid": "e2548eef-be69-41c7-88d7-8f5ef0944de2",
+      "role": "gallery",
+      "filename": "e2548eef-be69-41c7-88d7-8f5ef0944de2.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1712867640188403716",
+      "attachmentName": "Resources.png",
+      "attachmentTitle": "Learning Resources"
+    },
+    {
+      "index": 6,
+      "uuid": "dabc49da-94a6-4e82-b142-2c4da8b8548b",
+      "role": "gallery",
+      "filename": "dabc49da-94a6-4e82-b142-2c4da8b8548b.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "1712867640188403717",
+      "attachmentName": "Groups - SideBar Open.png",
+      "attachmentTitle": "Admin-Group management page"
+    },
+    {
+      "index": 7,
+      "uuid": "d4d018bc-37fd-4f91-911c-82a2ca293806",
+      "role": "gallery",
+      "filename": "d4d018bc-37fd-4f91-911c-82a2ca293806.png",
+      "missing": false,
+      "attachmentRank": 7,
+      "attachmentUid": "1712867640188403718",
+      "attachmentName": "Groups.png",
+      "attachmentTitle": "Admin-Group Stats"
+    },
+    {
+      "index": 8,
+      "uuid": "b8f0491c-4ab8-4946-9902-91770a741c04",
+      "role": "gallery",
+      "filename": "b8f0491c-4ab8-4946-9902-91770a741c04.png",
+      "missing": false,
+      "attachmentRank": 8,
+      "attachmentUid": "1712867640188403719",
+      "attachmentName": "Contests.png",
+      "attachmentTitle": "Contest Detail page"
+    },
+    {
+      "index": 9,
+      "uuid": "6d81450b-d661-4d5b-89ae-a262b23d54d7",
+      "role": "gallery",
+      "filename": "6d81450b-d661-4d5b-89ae-a262b23d54d7.png",
+      "missing": false,
+      "attachmentRank": 9,
+      "attachmentUid": "1712867640188403720",
+      "attachmentName": "Announcements.png",
+      "attachmentTitle": "Admin-announcements"
+    },
+    {
+      "index": 10,
+      "uuid": "f32f8e11-d6c5-4c7e-84e3-23648d0b681e",
+      "role": "gallery",
+      "filename": "f32f8e11-d6c5-4c7e-84e3-23648d0b681e.png",
+      "missing": false,
+      "attachmentRank": 10,
+      "attachmentUid": "1712867640188403721",
+      "attachmentName": "Waitlist.png",
+      "attachmentTitle": "Admin: User Application management"
+    }
+  ]
+}

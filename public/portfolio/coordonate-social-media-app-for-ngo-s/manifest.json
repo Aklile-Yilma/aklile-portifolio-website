@@ -1,0 +1,59 @@
+{
+  "projectId": "1712849642811895808",
+  "slug": "coordonate-social-media-app-for-ngo-s",
+  "title": "Coordonate: Social Media App for NGO's",
+  "generatedAt": "2026-04-13T16:43:19.393Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "b2fd0549-1ac1-4f69-af78-6554e9453924",
+      "role": "cover",
+      "filename": "b2fd0549-1ac1-4f69-af78-6554e9453924.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "e8c8f912-4a65-491b-b0b3-e877e88f053a",
+      "role": "gallery",
+      "filename": "e8c8f912-4a65-491b-b0b3-e877e88f053a.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1712849642811895809",
+      "attachmentName": "onboarding_merged.png",
+      "attachmentTitle": "Onboarding pages"
+    },
+    {
+      "index": 2,
+      "uuid": "945ab9e6-8f26-4555-aed5-4ecf0d61d6cb",
+      "role": "gallery",
+      "filename": "945ab9e6-8f26-4555-aed5-4ecf0d61d6cb.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1712852385192251392",
+      "attachmentName": "profile_pages.png",
+      "attachmentTitle": "Profile Feature"
+    },
+    {
+      "index": 3,
+      "uuid": "45f59089-3b3f-4db6-9baa-2bf0940abd73",
+      "role": "gallery",
+      "filename": "45f59089-3b3f-4db6-9baa-2bf0940abd73.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1712852385192251393",
+      "attachmentName": "posts_page.png",
+      "attachmentTitle": "Posts Feature"
+    },
+    {
+      "index": 4,
+      "uuid": "865cc175-496b-4574-8611-bbd34bbdbb11",
+      "role": "gallery",
+      "filename": "865cc175-496b-4574-8611-bbd34bbdbb11.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1712852385192251394",
+      "attachmentName": "chats.png",
+      "attachmentTitle": "Chat Feature"
+    }
+  ]
+}

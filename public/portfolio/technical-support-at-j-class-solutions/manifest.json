@@ -1,0 +1,92 @@
+{
+  "projectId": "1989046838119792640",
+  "slug": "technical-support-at-j-class-solutions",
+  "title": "Technical Support at J-class solutions",
+  "generatedAt": "2026-04-13T16:43:19.391Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "0d2283f2-5729-4705-86d0-7040d5533511",
+      "role": "cover",
+      "filename": "0d2283f2-5729-4705-86d0-7040d5533511.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "d8b14a93-2088-4fcf-99aa-8f323e5eee66",
+      "role": "gallery",
+      "filename": "d8b14a93-2088-4fcf-99aa-8f323e5eee66.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1989046838119792642",
+      "attachmentName": "Screenshot from 2025-11-13 21-46-18.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "77994fe1-4775-4ba9-a6c0-43092d2a51f6",
+      "role": "gallery",
+      "filename": "77994fe1-4775-4ba9-a6c0-43092d2a51f6.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1989046838119792643",
+      "attachmentName": "Screenshot from 2025-11-13 21-46-25.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "5eb689f3-4bc7-4b77-9542-ae94310bd1fb",
+      "role": "gallery",
+      "filename": "5eb689f3-4bc7-4b77-9542-ae94310bd1fb.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1989046838119792644",
+      "attachmentName": "Screenshot from 2025-11-13 21-46-39.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "183009b7-dbd1-4c67-b024-7aaf727b5792",
+      "role": "gallery",
+      "filename": "183009b7-dbd1-4c67-b024-7aaf727b5792.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "1989046838119792645",
+      "attachmentName": "Screenshot from 2025-11-13 21-46-32.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "91784934-e953-4f3a-a172-07ba9bba6d9c",
+      "role": "gallery",
+      "filename": "91784934-e953-4f3a-a172-07ba9bba6d9c.png",
+      "missing": false,
+      "attachmentRank": 7,
+      "attachmentUid": "1989046838119792646",
+      "attachmentName": "Screenshot from 2025-11-13 21-50-48.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 6,
+      "uuid": "a74ba221-1dd4-4ef7-9f46-9cf1d73a7aa1",
+      "role": "gallery",
+      "filename": "a74ba221-1dd4-4ef7-9f46-9cf1d73a7aa1.png",
+      "missing": false,
+      "attachmentRank": 8,
+      "attachmentUid": "1989046838119792647",
+      "attachmentName": "Screenshot from 2025-11-13 21-49-38.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 7,
+      "uuid": "cae5cfbf-6536-4485-8ad2-c33fcd6607b1",
+      "role": "gallery",
+      "filename": "cae5cfbf-6536-4485-8ad2-c33fcd6607b1.png",
+      "missing": false,
+      "attachmentRank": 9,
+      "attachmentUid": "1989046838119792648",
+      "attachmentName": "Screenshot from 2025-11-13 21-50-03.png",
+      "attachmentTitle": null
+    }
+  ]
+}

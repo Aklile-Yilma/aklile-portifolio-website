@@ -1,0 +1,22 @@
+{
+  "projectId": "aladia-portfolio",
+  "slug": "aladia",
+  "title": "Aladia — AI-native product experience",
+  "generatedAt": "2026-05-03T10:50:00.000Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "aladia-cover",
+      "role": "cover",
+      "filename": "aladia-1.png",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "aladia-gallery-1",
+      "role": "gallery",
+      "filename": "aladia-2.png",
+      "missing": false
+    }
+  ]
+}

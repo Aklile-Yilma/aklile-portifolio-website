@@ -1,0 +1,103 @@
+{
+  "projectId": "2038560801786142720",
+  "slug": "walmart-seller-map",
+  "title": "Walmart Seller Map",
+  "generatedAt": "2026-04-13T16:43:19.367Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "29078172-b08d-4de9-977a-e4deb5b23d68",
+      "role": "cover",
+      "filename": "29078172-b08d-4de9-977a-e4deb5b23d68.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "44c4d27c-e0af-4006-9160-a93d41f4af84",
+      "role": "gallery",
+      "filename": "44c4d27c-e0af-4006-9160-a93d41f4af84.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "2038560801786142722",
+      "attachmentName": "Screenshot from 2026-03-30 08-43-27.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "94ed42f5-bfb6-4c1e-87ff-a2ea1e9d94a7",
+      "role": "gallery",
+      "filename": "94ed42f5-bfb6-4c1e-87ff-a2ea1e9d94a7.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "2038560801786142723",
+      "attachmentName": "Screenshot from 2026-03-30 08-46-40.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "6aa988e0-bb63-4a4e-b840-ffd66f8a53db",
+      "role": "gallery",
+      "filename": "6aa988e0-bb63-4a4e-b840-ffd66f8a53db.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "2038560801786142724",
+      "attachmentName": "Screenshot from 2026-03-30 08-47-53.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "47ee4f9b-cf31-4c2c-bbef-8135f48a214f",
+      "role": "gallery",
+      "filename": "47ee4f9b-cf31-4c2c-bbef-8135f48a214f.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "2038560801786142725",
+      "attachmentName": "Screenshot from 2026-03-30 08-49-25.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "15173784-8bd2-47c5-9608-a3f5ef073907",
+      "role": "gallery",
+      "filename": "15173784-8bd2-47c5-9608-a3f5ef073907.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "2038560801786142726",
+      "attachmentName": "Screenshot from 2026-03-30 08-50-12.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 6,
+      "uuid": "01458d61-c2a0-45af-8935-21de19e1fc63",
+      "role": "gallery",
+      "filename": "01458d61-c2a0-45af-8935-21de19e1fc63.png",
+      "missing": false,
+      "attachmentRank": 7,
+      "attachmentUid": "2038560801786142727",
+      "attachmentName": "Screenshot from 2026-03-30 13-05-52.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 7,
+      "uuid": "0a36c27a-2970-4962-a67d-1e122415676c",
+      "role": "gallery",
+      "filename": "0a36c27a-2970-4962-a67d-1e122415676c.png",
+      "missing": false,
+      "attachmentRank": 8,
+      "attachmentUid": "2038560801786142728",
+      "attachmentName": "Screenshot from 2026-03-30 13-06-05.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 8,
+      "uuid": "15b271ad-1b39-480e-9921-9c69436d1c9b",
+      "role": "gallery",
+      "filename": "15b271ad-1b39-480e-9921-9c69436d1c9b.png",
+      "missing": false,
+      "attachmentRank": 9,
+      "attachmentUid": "2038560801786142729",
+      "attachmentName": "Screenshot from 2026-03-30 13-07-06.png",
+      "attachmentTitle": null
+    }
+  ]
+}

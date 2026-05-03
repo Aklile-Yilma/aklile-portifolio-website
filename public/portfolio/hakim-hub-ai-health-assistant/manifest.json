@@ -1,0 +1,81 @@
+{
+  "projectId": "1728009695981666304",
+  "slug": "hakim-hub-ai-health-assistant",
+  "title": "Hakim Hub: AI Health Assistant",
+  "generatedAt": "2026-04-13T16:43:19.384Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "82dca9c0-209a-4fcd-a9fd-ec5382b80c59",
+      "role": "cover",
+      "filename": "82dca9c0-209a-4fcd-a9fd-ec5382b80c59.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "d1af59db-387f-4a66-85e9-8a8e8dc89084",
+      "role": "gallery",
+      "filename": "d1af59db-387f-4a66-85e9-8a8e8dc89084.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1973810032291336192",
+      "attachmentName": "Screenshot from 2025-10-02 20-41-14.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "c0ed9ecf-cca5-4112-9dc5-79bcb9ddc51a",
+      "role": "gallery",
+      "filename": "c0ed9ecf-cca5-4112-9dc5-79bcb9ddc51a.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1973810032291336193",
+      "attachmentName": "Screenshot from 2025-10-02 20-42-59.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "f3360955-75e9-441b-ba77-4efb087ac5d9",
+      "role": "gallery",
+      "filename": "f3360955-75e9-441b-ba77-4efb087ac5d9.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1973810032291336194",
+      "attachmentName": "Screenshot from 2025-10-02 20-43-25.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "7a9b885f-f59f-4c9e-b730-11c8741eb1b8",
+      "role": "gallery",
+      "filename": "7a9b885f-f59f-4c9e-b730-11c8741eb1b8.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1973810032291336195",
+      "attachmentName": "Screenshot from 2025-10-02 20-49-08.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "e2da5f2a-fc34-4961-a447-28e7dda82740",
+      "role": "gallery",
+      "filename": "e2da5f2a-fc34-4961-a447-28e7dda82740.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1973810032291336196",
+      "attachmentName": "Screenshot from 2025-10-02 20-45-23.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 6,
+      "uuid": "5685ebcd-694f-4618-be0f-81468d959b3f",
+      "role": "gallery",
+      "filename": "5685ebcd-694f-4618-be0f-81468d959b3f.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "1973810032291336197",
+      "attachmentName": "Screenshot from 2025-10-02 20-46-11.png",
+      "attachmentTitle": null
+    }
+  ]
+}

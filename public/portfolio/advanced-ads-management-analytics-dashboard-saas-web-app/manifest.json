@@ -1,0 +1,92 @@
+{
+  "projectId": "2005628072912474112",
+  "slug": "advanced-ads-management-analytics-dashboard-saas-web-app",
+  "title": "Advanced Ads Management & Analytics Dashboard (SaaS Web App)",
+  "generatedAt": "2026-04-13T16:43:19.398Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "6bfe129a-3529-4538-8715-030f13f6c7c9",
+      "role": "cover",
+      "filename": "6bfe129a-3529-4538-8715-030f13f6c7c9.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "d1481e81-e1a0-4e94-8656-e6e4969fabb2",
+      "role": "gallery",
+      "filename": "d1481e81-e1a0-4e94-8656-e6e4969fabb2.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "2005628072912474113",
+      "attachmentName": "Screenshot from 2025-12-29 16-00-47.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "f16aa9ad-c62d-4381-bfd7-fd949d7e1c92",
+      "role": "gallery",
+      "filename": "f16aa9ad-c62d-4381-bfd7-fd949d7e1c92.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "2005628072912474115",
+      "attachmentName": "Screenshot from 2025-12-29 16-03-05.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "caffaecd-8743-45c5-826d-f49a9886857a",
+      "role": "gallery",
+      "filename": "caffaecd-8743-45c5-826d-f49a9886857a.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "2005628072912474116",
+      "attachmentName": "Screenshot from 2025-12-29 16-03-17.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "c5af7d51-19b8-412f-8c91-68c048292aaf",
+      "role": "gallery",
+      "filename": "c5af7d51-19b8-412f-8c91-68c048292aaf.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "2005628072912474117",
+      "attachmentName": "Screenshot from 2025-12-29 16-03-30.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "349836a5-5c56-4d07-8aa6-83d31dbd6d32",
+      "role": "gallery",
+      "filename": "349836a5-5c56-4d07-8aa6-83d31dbd6d32.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "2005628072912474118",
+      "attachmentName": "Screenshot from 2025-12-29 16-03-50.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 6,
+      "uuid": "b15efd21-898f-46f6-a063-72991b44910e",
+      "role": "gallery",
+      "filename": "b15efd21-898f-46f6-a063-72991b44910e.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "2005628072912474119",
+      "attachmentName": "Screenshot from 2025-12-29 16-04-07.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 7,
+      "uuid": "e350bbe3-12de-493f-bc4c-f8342739ffd0",
+      "role": "gallery",
+      "filename": "e350bbe3-12de-493f-bc4c-f8342739ffd0.png",
+      "missing": false,
+      "attachmentRank": 7,
+      "attachmentUid": "2005628072912474120",
+      "attachmentName": "Screenshot from 2025-12-29 16-04-28.png",
+      "attachmentTitle": null
+    }
+  ]
+}

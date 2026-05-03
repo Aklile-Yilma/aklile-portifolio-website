@@ -1,0 +1,70 @@
+{
+  "projectId": "1973804287103971328",
+  "slug": "mookoobmedia-all-in-one-local-business-growth-platform",
+  "title": "Mookoobmedia- All-in-One Local Business Growth Platform",
+  "generatedAt": "2026-04-13T16:43:19.372Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "d329e5fe-30c9-4c69-a4ef-92207ff06c0d",
+      "role": "cover",
+      "filename": "d329e5fe-30c9-4c69-a4ef-92207ff06c0d.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "59d3f78e-d249-4b5e-8d66-095e1fd84f1e",
+      "role": "gallery",
+      "filename": "59d3f78e-d249-4b5e-8d66-095e1fd84f1e.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1973805112906964992",
+      "attachmentName": "Screenshot from 2025-10-02 20-35-59.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "d0e968e6-5c16-461f-8449-4dc331e24758",
+      "role": "gallery",
+      "filename": "d0e968e6-5c16-461f-8449-4dc331e24758.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1973804287103971330",
+      "attachmentName": "Screenshot from 2025-10-02 20-12-02.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "8a1860c2-410e-474d-a348-7b9473ef7e07",
+      "role": "gallery",
+      "filename": "8a1860c2-410e-474d-a348-7b9473ef7e07.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1973804287103971332",
+      "attachmentName": "Screenshot from 2025-10-02 20-13-38.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "2da29e15-de17-464c-8f27-4bffdf88e024",
+      "role": "gallery",
+      "filename": "2da29e15-de17-464c-8f27-4bffdf88e024.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1973804287103971331",
+      "attachmentName": "Screenshot from 2025-10-02 20-11-25.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "1d5a7cc7-158e-47f0-af6c-a5eeb4bf1fb9",
+      "role": "gallery",
+      "filename": "1d5a7cc7-158e-47f0-af6c-a5eeb4bf1fb9.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1973804287103971333",
+      "attachmentName": "Screenshot from 2025-10-02 20-14-21.png",
+      "attachmentTitle": null
+    }
+  ]
+}

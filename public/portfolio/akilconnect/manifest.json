@@ -1,0 +1,92 @@
+{
+  "projectId": "1975185590490152960",
+  "slug": "akilconnect",
+  "title": "AkilConnect",
+  "generatedAt": "2026-04-13T16:43:19.369Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "a08b4a27-12d9-4897-8386-4fb098a8c38b",
+      "role": "cover",
+      "filename": "a08b4a27-12d9-4897-8386-4fb098a8c38b.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "ee52f18f-2d5b-4d0f-9f0d-622acc82b50b",
+      "role": "gallery",
+      "filename": "ee52f18f-2d5b-4d0f-9f0d-622acc82b50b.png",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1975185590490152961",
+      "attachmentName": "Screenshot from 2025-10-06 15-56-48.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "96191a60-6b28-4483-82f9-0970b50135bc",
+      "role": "gallery",
+      "filename": "96191a60-6b28-4483-82f9-0970b50135bc.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1975185590490152962",
+      "attachmentName": "Screenshot from 2025-10-06 15-57-08.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "5fc0b40e-4b4d-462b-9ce1-bebd694b593f",
+      "role": "gallery",
+      "filename": "5fc0b40e-4b4d-462b-9ce1-bebd694b593f.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1975185590490152963",
+      "attachmentName": "Screenshot from 2025-10-06 15-57-25.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "8df1f542-e659-4839-ba57-60f59a7a807c",
+      "role": "gallery",
+      "filename": "8df1f542-e659-4839-ba57-60f59a7a807c.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1975185590490152964",
+      "attachmentName": "Screenshot from 2025-10-06 16-02-56.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "e477afa6-fafe-4efc-b66d-3db44ea0545d",
+      "role": "gallery",
+      "filename": "e477afa6-fafe-4efc-b66d-3db44ea0545d.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1975185590490152965",
+      "attachmentName": "Screenshot from 2025-10-06 16-03-57.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 6,
+      "uuid": "629dcf1f-e72e-4626-b3ad-65c19bf9eca7",
+      "role": "gallery",
+      "filename": "629dcf1f-e72e-4626-b3ad-65c19bf9eca7.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "1975185590490152966",
+      "attachmentName": "Screenshot from 2025-10-06 15-58-09.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 7,
+      "uuid": "ffa44a88-2d27-428c-bbbe-0c1ed1a299b3",
+      "role": "gallery",
+      "filename": "ffa44a88-2d27-428c-bbbe-0c1ed1a299b3.png",
+      "missing": false,
+      "attachmentRank": 7,
+      "attachmentUid": "1975185590490152967",
+      "attachmentName": "Screenshot from 2025-10-06 15-58-01.png",
+      "attachmentTitle": null
+    }
+  ]
+}

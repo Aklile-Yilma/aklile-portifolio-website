@@ -1,0 +1,91 @@
+import { Code2, ExternalLink } from "lucide-react";
+import Link from "next/link";
+
+import { siteConfig } from "@/lib/site-config";
+
+import { Reveal } from "./reveal";
+import { SectionHeader } from "./section-header";
+
+export function About() {
+  return (
+    <section id="about" className="px-4 py-24 md:px-6 md:py-32">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <div>
+            <SectionHeader
+              kicker="About"
+              title="AI-native engineer, partner mindset"
+              description={
+                <>
+                  <p className="leading-relaxed">
+                    I&apos;m {siteConfig.name}, an{" "}
+                    {siteConfig.title.toLowerCase()}. I work with startups and
+                    established teams to ship web apps, mobile products, AI-assisted
+                    features, and the APIs and infrastructure behind them —
+                    including direct engagements alongside marketplace work.
+                  </p>
+                  <p className="mt-4 leading-relaxed">
+                    You get direct access to me — no agency handoffs — with
+                    weekly visibility, pragmatic architecture, and honest
+                    timelines.
+                  </p>
+                </>
+              }
+            />
+            <Reveal delay={0.06}>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href={siteConfig.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-4 py-2 text-sm text-text-primary transition-colors hover:border-accent/25 hover:bg-white/[0.04]"
+                >
+                  <ExternalLink className="h-4 w-4 text-accent" />
+                  LinkedIn
+                </Link>
+                {siteConfig.github ? (
+                  <Link
+                    href={siteConfig.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-4 py-2 text-sm text-text-primary transition-colors hover:border-accent/25 hover:bg-white/[0.04]"
+                  >
+                    <Code2 className="h-4 w-4 text-accent" />
+                    GitHub
+                  </Link>
+                ) : null}
+                <Link
+                  href={siteConfig.upwork}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-4 py-2 text-sm text-text-tertiary transition-colors hover:border-accent/25 hover:bg-white/[0.04] hover:text-text-primary"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Upwork (reviews)
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.1}>
+            <div className="glass rounded-2xl p-8 md:p-10">
+              <h3 className="font-display text-lg font-semibold text-text-primary">
+                Availability
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                {siteConfig.scarcityLine} Reach out for a short call to see if
+                we&apos;re a fit — no obligation.
+              </p>
+              <Link
+                href="#contact"
+                className="mt-6 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
+              >
+                Schedule a call
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}

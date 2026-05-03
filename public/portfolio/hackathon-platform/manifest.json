@@ -1,0 +1,70 @@
+{
+  "projectId": "1977718406259724288",
+  "slug": "hackathon-platform",
+  "title": "Hackathon Platform",
+  "generatedAt": "2026-04-13T16:43:19.376Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "24bee65f-b62e-4b5c-b9f1-dbde52690731",
+      "role": "cover",
+      "filename": "24bee65f-b62e-4b5c-b9f1-dbde52690731.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "f9043be4-155e-4e40-9959-75969ab3a164",
+      "role": "gallery",
+      "filename": "f9043be4-155e-4e40-9959-75969ab3a164.png",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1977718406259724289",
+      "attachmentName": "Screenshot from 2025-10-13 15-40-40.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "d046dac3-ad6e-4ced-932f-6a95fdbeb9a6",
+      "role": "gallery",
+      "filename": "d046dac3-ad6e-4ced-932f-6a95fdbeb9a6.png",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1977718406259724291",
+      "attachmentName": "Screenshot from 2025-10-13 15-41-12.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "03a34891-3c55-41e6-83e9-0bfd1b98d180",
+      "role": "gallery",
+      "filename": "03a34891-3c55-41e6-83e9-0bfd1b98d180.png",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1977718406259724292",
+      "attachmentName": "Screenshot from 2025-10-13 15-41-21.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "d8b49266-4014-4e1a-970e-60f7ed6258f2",
+      "role": "gallery",
+      "filename": "d8b49266-4014-4e1a-970e-60f7ed6258f2.png",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1977718406259724293",
+      "attachmentName": "Screenshot from 2025-10-13 15-40-51.png",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "8c031d6d-a099-4e93-b5be-88f98300bfd7",
+      "role": "gallery",
+      "filename": "8c031d6d-a099-4e93-b5be-88f98300bfd7.png",
+      "missing": false,
+      "attachmentRank": 6,
+      "attachmentUid": "1977718406259724294",
+      "attachmentName": "Screenshot from 2025-10-13 15-41-03.png",
+      "attachmentTitle": null
+    }
+  ]
+}

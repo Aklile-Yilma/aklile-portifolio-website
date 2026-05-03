@@ -1,0 +1,70 @@
+{
+  "projectId": "1957481752350748672",
+  "slug": "sellify-mobile-app-walmart-seller-insights",
+  "title": "Sellify Mobile App: Walmart Seller Insights",
+  "generatedAt": "2026-04-13T16:43:19.374Z",
+  "images": [
+    {
+      "index": 0,
+      "uuid": "b3bb99c7-c6d2-4580-b88e-912cd6a14dd9",
+      "role": "cover",
+      "filename": "b3bb99c7-c6d2-4580-b88e-912cd6a14dd9.jpg",
+      "missing": false
+    },
+    {
+      "index": 1,
+      "uuid": "c548b439-5f50-4a0c-b1ac-c383975d3f37",
+      "role": "gallery",
+      "filename": "c548b439-5f50-4a0c-b1ac-c383975d3f37.jpg",
+      "missing": false,
+      "attachmentRank": 1,
+      "attachmentUid": "1957481752350748675",
+      "attachmentName": "3.jpg",
+      "attachmentTitle": null
+    },
+    {
+      "index": 2,
+      "uuid": "7c6d8da8-ccce-4713-8837-bf0f337e12bf",
+      "role": "gallery",
+      "filename": "7c6d8da8-ccce-4713-8837-bf0f337e12bf.jpg",
+      "missing": false,
+      "attachmentRank": 2,
+      "attachmentUid": "1957481752350748674",
+      "attachmentName": "2.jpg",
+      "attachmentTitle": null
+    },
+    {
+      "index": 3,
+      "uuid": "10981e08-2997-4ee6-9b42-2c4a03131356",
+      "role": "gallery",
+      "filename": "10981e08-2997-4ee6-9b42-2c4a03131356.jpg",
+      "missing": false,
+      "attachmentRank": 3,
+      "attachmentUid": "1957481752350748673",
+      "attachmentName": "1.jpg",
+      "attachmentTitle": null
+    },
+    {
+      "index": 4,
+      "uuid": "7bf4825f-87d9-4ec3-8a51-d4e45bcfeab6",
+      "role": "gallery",
+      "filename": "7bf4825f-87d9-4ec3-8a51-d4e45bcfeab6.jpg",
+      "missing": false,
+      "attachmentRank": 4,
+      "attachmentUid": "1957481752350748677",
+      "attachmentName": "5.jpg",
+      "attachmentTitle": null
+    },
+    {
+      "index": 5,
+      "uuid": "0953100f-328a-4c08-a88c-775fd81034d9",
+      "role": "gallery",
+      "filename": "0953100f-328a-4c08-a88c-775fd81034d9.jpg",
+      "missing": false,
+      "attachmentRank": 5,
+      "attachmentUid": "1957481752350748676",
+      "attachmentName": "4.jpg",
+      "attachmentTitle": null
+    }
+  ]
+}
