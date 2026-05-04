@@ -8,7 +8,7 @@ export const siteConfig = {
   },
   description:
     "AI-native full-stack developer shipping SaaS, mobile, backends, and AI automation for direct clients and product teams in the US and EU. Book a call or message on WhatsApp.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aklile.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://aklile-yilma.dev",
   /** Query param appended to the site URL for referral tracking (share this link). */
   referralParam: "ref",
   referralParamValue: "direct",

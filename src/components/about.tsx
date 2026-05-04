@@ -1,4 +1,4 @@
-import { Code2, ExternalLink } from "lucide-react";
+import { Briefcase, Code2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-config";
@@ -60,8 +60,8 @@ export function About() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] px-4 py-2 text-sm text-text-tertiary transition-colors hover:border-accent/25 hover:bg-white/[0.04] hover:text-text-primary"
                 >
-                  <ExternalLink className="h-4 w-4" />
-                  Upwork (reviews)
+                  <Briefcase className="h-4 w-4" />
+                  Upwork
                 </Link>
               </div>
             </Reveal>

@@ -22,6 +22,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [loadingLink, setLoadingLink] = useState(false);
+  const [generated, setGenerated] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const ensureReferralLink = useCallback(async () => {
@@ -34,10 +35,12 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
     if (storedCode && storedName) {
       setName(storedName);
       setUrl(storedUrl ?? referralShareUrl(storedCode));
+      setGenerated(false);
     } else {
       window.localStorage.removeItem(REFERRAL_ID_KEY);
       window.localStorage.removeItem(REFERRAL_URL_KEY);
       setUrl("");
+      setGenerated(false);
     }
   }, []);
 
@@ -45,7 +48,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
     if (typeof window === "undefined") return;
     const cleanName = name.trim();
     if (!cleanName) {
-      setError("Please enter your name.");
+      setError("Please enter name or company name.");
       return;
     }
 
@@ -70,6 +73,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
         window.localStorage.setItem(REFERRER_NAME_KEY, cleanName);
         setUrl(referralUrl);
         setName(cleanName);
+        setGenerated(true);
         trackEvent({
           name: "referral_link_generated",
           location: "referral_modal",
@@ -162,12 +166,15 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="w-full">
             <span className="mb-2 block text-xs text-text-tertiary">
-              Your name or company (required)
+              Please enter name or company name
             </span>
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                setGenerated(false);
+              }}
               placeholder="e.g. Selam or Acme Studio"
               className="w-full rounded-xl border border-white/[0.1] bg-bg-primary/80 px-3 py-2.5 text-sm text-text-primary outline-none ring-accent/40 transition focus:ring-2"
               maxLength={80}
@@ -179,7 +186,9 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
           <div className="min-w-0 flex-1 truncate rounded-xl border border-white/[0.1] bg-bg-primary/80 px-3 py-2.5 text-center font-mono text-[11px] text-text-secondary sm:text-left">
             {loadingLink
               ? "Generating referral link..."
-              : url || "Enter your name, then generate your referral link."}
+              : generated && url
+                ? url
+                : "Please enter name or company name."}
           </div>
           <button
             type="button"
@@ -192,7 +201,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
           <button
             type="button"
             onClick={copy}
-            disabled={loadingLink || !url}
+            disabled={loadingLink || !name.trim() || !generated || !url}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
           >
             {copied ? (

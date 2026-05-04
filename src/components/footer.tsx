@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Code2, ExternalLink, MessageCircle } from "lucide-react";
+import { Briefcase, Code2, ExternalLink, MessageCircle } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-mark";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
@@ -65,8 +65,8 @@ export function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 hover:text-text-primary"
           >
-            <ExternalLink className="h-3.5 w-3.5" />
-            Upwork reviews
+            <Briefcase className="h-3.5 w-3.5" />
+            Upwork
           </a>
         </nav>
         <p className="text-xs text-text-tertiary">
