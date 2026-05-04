@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { SiGithub, SiLinkedin, SiUpwork, SiWhatsapp } from "react-icons/si";
 
 import { BrandMark } from "@/components/brand-mark";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 export function Footer() {
+  const socialIconClass = "h-4 w-4";
+
   return (
     <footer className="border-t border-white/10 px-4 py-12 md:px-6">
       <div className="mx-auto max-w-6xl">
@@ -45,7 +46,12 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 hover:border-white/25 hover:text-text-primary"
             >
-              <SiWhatsapp className="h-4 w-4 text-[#25D366]" aria-hidden />
+              <img
+                src="https://cdn.simpleicons.org/whatsapp/25D366"
+                alt=""
+                aria-hidden
+                className={socialIconClass}
+              />
               WhatsApp
             </a>
             {siteConfig.github ? (
@@ -55,7 +61,12 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 hover:border-white/25 hover:text-text-primary"
               >
-                <SiGithub className="h-4 w-4" aria-hidden />
+                <img
+                  src="https://cdn.simpleicons.org/github"
+                  alt=""
+                  aria-hidden
+                  className={socialIconClass}
+                />
                 GitHub
               </a>
             ) : null}
@@ -65,7 +76,12 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 hover:border-white/25 hover:text-text-primary"
             >
-              <SiLinkedin className="h-4 w-4 text-[#0A66C2]" aria-hidden />
+              <img
+                src="https://cdn.simpleicons.org/linkedin/0A66C2"
+                alt=""
+                aria-hidden
+                className={socialIconClass}
+              />
               LinkedIn
             </a>
             <a
@@ -74,7 +90,12 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 hover:border-white/25 hover:text-text-primary"
             >
-              <SiUpwork className="h-4 w-4 text-[#6FDA44]" aria-hidden />
+              <img
+                src="https://cdn.simpleicons.org/upwork/6FDA44"
+                alt=""
+                aria-hidden
+                className={socialIconClass}
+              />
               Upwork
             </a>
           </nav>
