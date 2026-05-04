@@ -4,6 +4,7 @@ import { Check, Copy, Gift, X } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import { referralShareUrl } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 
 type ReferralModalProps = {
   open: boolean;
@@ -69,6 +70,11 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
         window.localStorage.setItem(REFERRER_NAME_KEY, cleanName);
         setUrl(referralUrl);
         setName(cleanName);
+        trackEvent({
+          name: "referral_link_generated",
+          location: "referral_modal",
+          href: referralUrl,
+        });
       } else {
         setError(data.error ?? "Could not generate referral link.");
       }
@@ -103,6 +109,11 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      trackEvent({
+        name: "referral_link_copied",
+        location: "referral_modal",
+        href: url,
+      });
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
       setCopied(false);

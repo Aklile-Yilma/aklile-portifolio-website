@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { BrandMark } from "@/components/brand-mark";
+import { trackEvent } from "@/lib/analytics";
 import { ReferralModal } from "@/components/referral-modal";
 
 const links = [
@@ -47,13 +48,26 @@ export function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <button
             type="button"
-            onClick={() => setReferralOpen(true)}
+            onClick={() => {
+              trackEvent({
+                name: "cta_refer_open_click",
+                location: "navbar",
+              });
+              setReferralOpen(true);
+            }}
             className="text-sm text-text-secondary transition-colors hover:text-text-primary"
           >
             Refer me
           </button>
           <Link
             href="#contact"
+            onClick={() =>
+              trackEvent({
+                name: "cta_book_call_click",
+                location: "navbar",
+                href: "#contact",
+              })
+            }
             className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
           >
             Book a call
@@ -95,6 +109,10 @@ export function Navbar() {
                 type="button"
                 className="rounded-xl px-3 py-3 text-left text-text-secondary hover:bg-white/5"
                 onClick={() => {
+                  trackEvent({
+                    name: "cta_refer_open_click",
+                    location: "mobile_menu",
+                  });
                   setOpen(false);
                   setReferralOpen(true);
                 }}
@@ -104,7 +122,14 @@ export function Navbar() {
               <Link
                 href="#contact"
                 className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-medium text-[oklch(0.14_0.04_75)]"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  trackEvent({
+                    name: "cta_book_call_click",
+                    location: "mobile_menu",
+                    href: "#contact",
+                  });
+                  setOpen(false);
+                }}
               >
                 Book a call
               </Link>

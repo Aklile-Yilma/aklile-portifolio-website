@@ -5,7 +5,6 @@ import { neon } from "@neondatabase/serverless";
 const dbUrl = process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
 
 declare global {
-  // eslint-disable-next-line no-var
   var __aklileSchemaReady: Promise<void> | undefined;
 }
 
@@ -73,6 +72,29 @@ export async function ensureAnalyticsSchema() {
       `;
 
       await sql`
+        CREATE TABLE IF NOT EXISTS website_events (
+          id BIGSERIAL PRIMARY KEY,
+          created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          event_name TEXT NOT NULL,
+          event_location TEXT,
+          href TEXT,
+          path TEXT,
+          full_url TEXT,
+          referrer TEXT,
+          visitor_id TEXT,
+          session_id TEXT,
+          referral_code TEXT,
+          user_agent TEXT,
+          ip_address TEXT,
+          country TEXT,
+          region TEXT,
+          city TEXT,
+          timezone TEXT,
+          metadata JSONB
+        );
+      `;
+
+      await sql`
         CREATE INDEX IF NOT EXISTS idx_website_visits_created_at
           ON website_visits (created_at DESC);
       `;
@@ -87,6 +109,22 @@ export async function ensureAnalyticsSchema() {
       await sql`
         CREATE INDEX IF NOT EXISTS idx_website_visits_referral_code
           ON website_visits (referral_code);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_events_created_at
+          ON website_events (created_at DESC);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_events_event_name
+          ON website_events (event_name);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_events_visitor_id
+          ON website_events (visitor_id);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_events_referral_code
+          ON website_events (referral_code);
       `;
     })();
   }

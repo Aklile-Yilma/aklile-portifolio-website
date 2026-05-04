@@ -5,6 +5,7 @@ import { Calendar, ExternalLink, Mail, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 import { mailtoHref, siteConfig, whatsappHref } from "@/lib/site-config";
+import { trackEvent } from "@/lib/analytics";
 
 import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
@@ -60,6 +61,13 @@ export function BookCall() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_whatsapp_click",
+                    location: "contact",
+                    href: whatsappHref(),
+                  })
+                }
                 className="glass flex items-center gap-4 rounded-2xl p-5 transition-colors hover:border-white/20"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
@@ -74,6 +82,13 @@ export function BookCall() {
             <Reveal delay={0.1}>
               <Link
                 href={mailtoHref()}
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_email_click",
+                    location: "contact",
+                    href: mailtoHref(),
+                  })
+                }
                 className="glass flex items-center gap-4 rounded-2xl p-5 transition-colors hover:border-white/20"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">
@@ -90,6 +105,13 @@ export function BookCall() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_linkedin_click",
+                    location: "contact",
+                    href: siteConfig.linkedin,
+                  })
+                }
                 className="glass flex items-center gap-4 rounded-2xl p-5 transition-colors hover:border-white/20"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent">

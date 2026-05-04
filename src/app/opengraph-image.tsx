@@ -7,6 +7,7 @@ export const size = {
   height: 630,
 };
 
+export const alt = `${siteConfig.name} - ${siteConfig.title}`;
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {

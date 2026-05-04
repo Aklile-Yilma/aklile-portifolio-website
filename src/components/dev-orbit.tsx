@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -45,6 +45,7 @@ export function DevOrbit({
   skills,
   tileClassName = "h-10 w-10 md:h-[3.25rem] md:w-[3.25rem]",
 }: DevOrbitProps) {
+  const prefersReducedMotion = useReducedMotion();
   const [failed, setFailed] = useState<string[]>([]);
   const available = useMemo(() => {
     const filtered = skills.filter((s) => !failed.includes(s.label));
@@ -62,22 +63,24 @@ export function DevOrbit({
   const leftRef = useRef(0);
   const leftTimeoutRef = useRef<number | null>(null);
   const rightTimeoutRef = useRef<number | null>(null);
+  const safeLeftSkill = n <= 1 ? 0 : ((leftSkill % n) + n) % n;
+  const rawRightSkill = n <= 1 ? 0 : ((rightSkill % n) + n) % n;
+  const safeRightSkill =
+    n <= 1
+      ? 0
+      : rawRightSkill === safeLeftSkill
+        ? (safeLeftSkill + 1) % n
+        : rawRightSkill;
 
   useEffect(() => {
-    if (n <= 1) {
-      setLeftSkill(0);
-      setRightSkill(0);
-      setLeftVisible(true);
-      setRightVisible(true);
-      leftRef.current = 0;
-      return;
-    }
+    if (prefersReducedMotion) return;
+    if (n <= 1) return;
 
     const leftId = window.setInterval(() => {
       setLeftVisible(false);
       if (leftTimeoutRef.current) window.clearTimeout(leftTimeoutRef.current);
       leftTimeoutRef.current = window.setTimeout(() => {
-        setLeftSkill((prev) => nextRandomIndex(n, prev));
+        setLeftSkill((prev) => nextRandomIndex(n, ((prev % n) + n) % n));
         setLeftSlot((prev) => nextRandomIndex(LEFT_SLOTS.length, prev));
         setLeftVisible(true);
       }, 260);
@@ -88,7 +91,7 @@ export function DevOrbit({
       if (rightTimeoutRef.current) window.clearTimeout(rightTimeoutRef.current);
       rightTimeoutRef.current = window.setTimeout(() => {
         setRightSkill((prev) => {
-          const next = nextRandomIndex(n, prev);
+          const next = nextRandomIndex(n, ((prev % n) + n) % n);
           return next === leftRef.current ? (next + 1) % n : next;
         });
         setRightSlot((prev) => nextRandomIndex(RIGHT_SLOTS.length, prev));
@@ -102,26 +105,15 @@ export function DevOrbit({
       if (leftTimeoutRef.current) window.clearTimeout(leftTimeoutRef.current);
       if (rightTimeoutRef.current) window.clearTimeout(rightTimeoutRef.current);
     };
-  }, [n]);
+  }, [n, prefersReducedMotion]);
 
   useEffect(() => {
-    leftRef.current = leftSkill;
-  }, [leftSkill]);
+    leftRef.current = safeLeftSkill;
+  }, [safeLeftSkill]);
 
-  useEffect(() => {
-    if (n <= 1) return;
-    if (leftSkill >= n) setLeftSkill(0);
-    if (rightSkill >= n) setRightSkill(1 % n);
-  }, [n, leftSkill, rightSkill]);
-
-  useEffect(() => {
-    if (n <= 1) return;
-    if (rightSkill === leftSkill) setRightSkill((leftSkill + 1) % n);
-  }, [leftSkill, rightSkill, n]);
-
-  const left = available[leftSkill];
-  const right = available[rightSkill];
-  if (!left) return null;
+  const left = available[safeLeftSkill];
+  const right = available[safeRightSkill];
+  if (!left || prefersReducedMotion) return null;
   const leftPos = LEFT_SLOTS[leftSlot];
   const rightPos = RIGHT_SLOTS[rightSlot];
 

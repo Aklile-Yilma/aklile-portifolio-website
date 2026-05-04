@@ -9,10 +9,12 @@ type DashboardData = {
     uniqueVisitors: number;
     uniqueSessions: number;
     referralCodes: number;
+    events: number;
   };
   visitsByDay: Array<{ day: string; visits: number }>;
   topCountries: Array<{ country: string; visits: number }>;
   topReferrals: Array<{ code: string; visits: number }>;
+  topEvents: Array<{ name: string; count: number }>;
   recentVisits: Array<{
     createdAt: string;
     path: string;
@@ -51,6 +53,7 @@ async function getDashboardData(): Promise<DashboardData> {
   const [sessionsRow = {}] =
     await sql`SELECT COUNT(DISTINCT session_id) AS count FROM website_visits WHERE session_id IS NOT NULL;`;
   const [referralRow = {}] = await sql`SELECT COUNT(*) AS count FROM referrals;`;
+  const [eventsRow = {}] = await sql`SELECT COUNT(*) AS count FROM website_events;`;
 
   const visitsByDayRows = await sql`
     SELECT TO_CHAR(DATE_TRUNC('day', created_at), 'YYYY-MM-DD') AS day, COUNT(*) AS visits
@@ -74,6 +77,13 @@ async function getDashboardData(): Promise<DashboardData> {
     GROUP BY 1
     ORDER BY 2 DESC
     LIMIT 10;
+  `;
+  const topEventsRows = await sql`
+    SELECT event_name AS name, COUNT(*) AS count
+    FROM website_events
+    GROUP BY 1
+    ORDER BY 2 DESC
+    LIMIT 12;
   `;
 
   const recentVisitsRows = await sql`
@@ -108,6 +118,7 @@ async function getDashboardData(): Promise<DashboardData> {
       uniqueVisitors: num((visitorsRow as { count?: string | number }).count),
       uniqueSessions: num((sessionsRow as { count?: string | number }).count),
       referralCodes: num((referralRow as { count?: string | number }).count),
+      events: num((eventsRow as { count?: string | number }).count),
     },
     visitsByDay: visitsByDayRows.map((r) => ({
       day: String((r as { day?: string }).day ?? ""),
@@ -120,6 +131,10 @@ async function getDashboardData(): Promise<DashboardData> {
     topReferrals: topReferralsRows.map((r) => ({
       code: String((r as { code?: string }).code ?? "(none)"),
       visits: num((r as { visits?: string | number }).visits),
+    })),
+    topEvents: topEventsRows.map((r) => ({
+      name: String((r as { name?: string }).name ?? "unknown"),
+      count: num((r as { count?: string | number }).count),
     })),
     recentVisits: recentVisitsRows.map((r) => ({
       createdAt: String((r as { created_at?: string }).created_at ?? ""),
@@ -175,7 +190,9 @@ function LoginForm({ error }: { error?: string }) {
             <p className="mt-3 text-xs text-red-300">
               {error === "invalid_password"
                 ? "Wrong password."
-                : "Stats password is not configured on the server."}
+                : error === "rate_limited"
+                  ? "Too many attempts. Try again in a few minutes."
+                  : "Stats password is not configured on the server."}
             </p>
           ) : null}
         </div>
@@ -257,11 +274,12 @@ export default async function StatsPage({
           </form>
         </div>
 
-        <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           <StatCard label="Total visits" value={data.totals.visits} />
           <StatCard label="Unique visitors" value={data.totals.uniqueVisitors} />
           <StatCard label="Unique sessions" value={data.totals.uniqueSessions} />
           <StatCard label="Referral codes" value={data.totals.referralCodes} />
+          <StatCard label="Tracked events" value={data.totals.events} />
         </section>
 
         <section className="grid gap-5 lg:grid-cols-2">
@@ -375,6 +393,34 @@ export default async function StatsPage({
                       <tr key={row.code} className="border-t border-white/6">
                         <td className="px-3 py-2 font-mono text-xs text-text-secondary">{row.code}</td>
                         <td className="px-3 py-2 text-text-primary">{row.visits}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="glass overflow-hidden rounded-2xl border border-white/10">
+              <div className="border-b border-white/10 px-4 py-3">
+                <h2 className="font-display text-lg font-semibold text-text-primary">
+                  Top tracked events
+                </h2>
+              </div>
+              <div className="max-h-56 overflow-auto">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-white/5 text-xs uppercase tracking-[0.12em] text-text-tertiary">
+                    <tr>
+                      <th className="px-3 py-2 text-left">Event</th>
+                      <th className="px-3 py-2 text-left">Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.topEvents.map((row) => (
+                      <tr key={row.name} className="border-t border-white/6">
+                        <td className="px-3 py-2 font-mono text-xs text-text-secondary">
+                          {row.name}
+                        </td>
+                        <td className="px-3 py-2 text-text-primary">{row.count}</td>
                       </tr>
                     ))}
                   </tbody>

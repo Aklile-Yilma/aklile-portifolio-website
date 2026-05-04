@@ -5,6 +5,7 @@ import { ArrowDown, Calendar, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 import { DevOrbit } from "@/components/dev-orbit";
+import { trackEvent } from "@/lib/analytics";
 import { TrustBar } from "@/components/trust-bar";
 import { heroOrbitSkills, stats } from "@/lib/content";
 import { mailtoHref, siteConfig, whatsappHref } from "@/lib/site-config";
@@ -108,6 +109,13 @@ export function Hero() {
             >
               <Link
                 href="#contact"
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_book_call_click",
+                    location: "hero",
+                    href: "#contact",
+                  })
+                }
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-[oklch(0.14_0.04_75)] shadow-[0_0_44px_-10px_var(--accent-glow)] transition-[transform,background,box-shadow] duration-200 hover:scale-[1.02] hover:bg-accent-hover hover:shadow-[0_0_52px_-8px_var(--accent-glow)] active:scale-[0.99] sm:w-auto"
               >
                 <Calendar className="h-5 w-5" />
@@ -117,6 +125,13 @@ export function Hero() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_whatsapp_click",
+                    location: "hero",
+                    href: whatsappHref(),
+                  })
+                }
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/[0.12] bg-[oklch(0.14_0.012_75/0.45)] px-6 py-3.5 text-base font-medium text-text-primary backdrop-blur-sm transition-colors duration-200 hover:border-accent/35 hover:bg-[oklch(0.18_0.016_78/0.55)] sm:w-auto"
               >
                 <MessageCircle className="h-5 w-5 text-accent" />
@@ -124,6 +139,13 @@ export function Hero() {
               </Link>
               <Link
                 href={mailtoHref()}
+                onClick={() =>
+                  trackEvent({
+                    name: "cta_email_click",
+                    location: "hero",
+                    href: mailtoHref(),
+                  })
+                }
                 className="text-sm text-text-secondary underline-offset-4 transition-colors hover:text-accent hover:underline"
               >
                 Or email directly
