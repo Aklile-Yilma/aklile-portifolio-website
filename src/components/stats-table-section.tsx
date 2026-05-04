@@ -101,9 +101,16 @@ export function StatsTableSection({
           method: "GET",
           cache: "no-store",
         });
-        if (!res.ok) throw new Error("Failed to load table data.");
-        const payload = (await res.json()) as StatsTableResult;
-        if (!cancelled) setData(payload);
+        const payload = (await res.json()) as
+          | StatsTableResult
+          | { error?: string; detail?: string };
+        if (!res.ok) {
+          const msg = payload && "detail" in payload && payload.detail
+            ? payload.detail
+            : "Failed to load table data.";
+          throw new Error(msg);
+        }
+        if (!cancelled) setData(payload as StatsTableResult);
       } catch (e) {
         if (!cancelled) {
           setError(e instanceof Error ? e.message : "Failed to load table data.");

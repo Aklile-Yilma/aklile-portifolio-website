@@ -37,8 +37,10 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json(data, { headers: { "cache-control": "no-store" } });
-  } catch {
-    return NextResponse.json({ error: "Failed to load table data" }, { status: 500 });
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "Unknown error";
+    console.error("stats table api error", { table, detail });
+    return NextResponse.json({ error: "Failed to load table data", detail }, { status: 500 });
   }
 }
 

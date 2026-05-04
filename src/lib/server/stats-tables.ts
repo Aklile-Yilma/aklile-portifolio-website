@@ -100,9 +100,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${country} = '' OR COALESCE(country, '') ILIKE ${countryLike})
         AND (${referral} = '' OR COALESCE(referral_code, '') ILIKE ${referralLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
     `;
     const total = num((countRow as { count?: string | number }).count);
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -125,9 +125,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${country} = '' OR COALESCE(country, '') ILIKE ${countryLike})
         AND (${referral} = '' OR COALESCE(referral_code, '') ILIKE ${referralLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
       ORDER BY ${sql.unsafe(orderSql)}, id DESC
       LIMIT ${PAGE_SIZE}
       OFFSET ${offset};
@@ -149,9 +149,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${country} = '' OR COALESCE(created_country, '') ILIKE ${countryLike})
         AND (${source} = '' OR COALESCE(source, '') ILIKE ${sourceLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
     `;
     const total = num((countRow as { count?: string | number }).count);
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -172,9 +172,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${country} = '' OR COALESCE(created_country, '') ILIKE ${countryLike})
         AND (${source} = '' OR COALESCE(source, '') ILIKE ${sourceLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
       ORDER BY ${sql.unsafe(orderSql)}, code DESC
       LIMIT ${PAGE_SIZE}
       OFFSET ${offset};
@@ -198,9 +198,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${eventName} = '' OR COALESCE(event_name, '') ILIKE ${eventLike})
         AND (${country} = '' OR COALESCE(country, '') ILIKE ${countryLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date));
     `;
     const total = num((countRow as { count?: string | number }).count);
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -223,9 +223,9 @@ export async function getStatsTableData(
         ) ILIKE ${qLike})
         AND (${eventName} = '' OR COALESCE(event_name, '') ILIKE ${eventLike})
         AND (${country} = '' OR COALESCE(country, '') ILIKE ${countryLike})
-        AND (${dateFrom} IS NULL OR created_at >= ${dateFrom}::date)
-        AND (${dateTo} IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
-        AND (${month.start} IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
+        AND (${dateFrom}::date IS NULL OR created_at >= ${dateFrom}::date)
+        AND (${dateTo}::date IS NULL OR created_at < (${dateTo}::date + INTERVAL '1 day'))
+        AND (${month.start}::date IS NULL OR (created_at >= ${month.start}::date AND created_at < ${month.endExclusive}::date))
       ORDER BY ${sql.unsafe(orderSql)}, id DESC
       LIMIT ${PAGE_SIZE}
       OFFSET ${offset};
@@ -244,9 +244,9 @@ export async function getStatsTableData(
         COALESCE(s.referral_code, ''),
         COALESCE(s.country, '')
       ) ILIKE ${qLike})
-      AND (${dateFrom} IS NULL OR s.last_seen_at >= ${dateFrom}::date)
-      AND (${dateTo} IS NULL OR s.last_seen_at < (${dateTo}::date + INTERVAL '1 day'))
-      AND (${month.start} IS NULL OR (s.last_seen_at >= ${month.start}::date AND s.last_seen_at < ${month.endExclusive}::date));
+      AND (${dateFrom}::date IS NULL OR s.last_seen_at >= ${dateFrom}::date)
+      AND (${dateTo}::date IS NULL OR s.last_seen_at < (${dateTo}::date + INTERVAL '1 day'))
+      AND (${month.start}::date IS NULL OR (s.last_seen_at >= ${month.start}::date AND s.last_seen_at < ${month.endExclusive}::date));
   `;
   const total = num((countRow as { count?: string | number }).count);
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -278,9 +278,9 @@ export async function getStatsTableData(
         COALESCE(s.referral_code, ''),
         COALESCE(s.country, '')
       ) ILIKE ${qLike})
-      AND (${dateFrom} IS NULL OR s.last_seen_at >= ${dateFrom}::date)
-      AND (${dateTo} IS NULL OR s.last_seen_at < (${dateTo}::date + INTERVAL '1 day'))
-      AND (${month.start} IS NULL OR (s.last_seen_at >= ${month.start}::date AND s.last_seen_at < ${month.endExclusive}::date))
+      AND (${dateFrom}::date IS NULL OR s.last_seen_at >= ${dateFrom}::date)
+      AND (${dateTo}::date IS NULL OR s.last_seen_at < (${dateTo}::date + INTERVAL '1 day'))
+      AND (${month.start}::date IS NULL OR (s.last_seen_at >= ${month.start}::date AND s.last_seen_at < ${month.endExclusive}::date))
     ORDER BY ${sql.unsafe(orderSql)}, s.last_seen_at DESC
     LIMIT ${PAGE_SIZE}
     OFFSET ${offset};
