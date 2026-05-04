@@ -95,6 +95,22 @@ export async function ensureAnalyticsSchema() {
       `;
 
       await sql`
+        CREATE TABLE IF NOT EXISTS website_sessions (
+          session_id TEXT PRIMARY KEY,
+          visitor_id TEXT,
+          referral_code TEXT,
+          first_seen_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          last_seen_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+          active_ms_total BIGINT NOT NULL DEFAULT 0,
+          visit_count INTEGER NOT NULL DEFAULT 0,
+          country TEXT,
+          region TEXT,
+          city TEXT,
+          timezone TEXT
+        );
+      `;
+
+      await sql`
         CREATE INDEX IF NOT EXISTS idx_website_visits_created_at
           ON website_visits (created_at DESC);
       `;
@@ -125,6 +141,18 @@ export async function ensureAnalyticsSchema() {
       await sql`
         CREATE INDEX IF NOT EXISTS idx_website_events_referral_code
           ON website_events (referral_code);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_sessions_last_seen_at
+          ON website_sessions (last_seen_at DESC);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_sessions_visit_count
+          ON website_sessions (visit_count DESC);
+      `;
+      await sql`
+        CREATE INDEX IF NOT EXISTS idx_website_sessions_active_ms_total
+          ON website_sessions (active_ms_total DESC);
       `;
     })();
   }

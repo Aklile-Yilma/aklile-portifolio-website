@@ -92,6 +92,39 @@ export async function POST(request: NextRequest) {
       );
     `;
 
+    if (sessionId) {
+      await sql`
+        INSERT INTO website_sessions (
+          session_id,
+          visitor_id,
+          referral_code,
+          visit_count,
+          country,
+          region,
+          city,
+          timezone
+        ) VALUES (
+          ${sessionId},
+          ${visitorId},
+          ${referralCode},
+          1,
+          ${geo.country},
+          ${geo.region},
+          ${geo.city},
+          ${geo.timezone}
+        )
+        ON CONFLICT (session_id) DO UPDATE SET
+          visitor_id = COALESCE(EXCLUDED.visitor_id, website_sessions.visitor_id),
+          referral_code = COALESCE(EXCLUDED.referral_code, website_sessions.referral_code),
+          visit_count = website_sessions.visit_count + 1,
+          last_seen_at = NOW(),
+          country = COALESCE(EXCLUDED.country, website_sessions.country),
+          region = COALESCE(EXCLUDED.region, website_sessions.region),
+          city = COALESCE(EXCLUDED.city, website_sessions.city),
+          timezone = COALESCE(EXCLUDED.timezone, website_sessions.timezone);
+      `;
+    }
+
     return NextResponse.json(
       { ok: true },
       { headers: { "cache-control": "no-store" } },

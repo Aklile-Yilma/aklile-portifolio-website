@@ -12,6 +12,7 @@ type DashboardData = {
     uniqueSessions: number;
     referralCodes: number;
     events: number;
+    minutesSpent: number;
   };
   visitsByDay: Array<{ day: string; visits: number }>;
   topCountries: Array<{ country: string; visits: number }>;
@@ -90,6 +91,18 @@ const eventsColumns = [
   "metadata",
 ] as const;
 
+const sessionLeaderboardColumns = [
+  "session_id",
+  "visitor_id",
+  "visit_count",
+  "event_count",
+  "minutes_spent",
+  "referral_code",
+  "country",
+  "first_seen_at",
+  "last_seen_at",
+] as const;
+
 function num(v: unknown) {
   const n = Number(v);
   return Number.isFinite(n) ? n : 0;
@@ -111,6 +124,8 @@ async function getDashboardData(): Promise<DashboardData> {
     await sql`SELECT COUNT(DISTINCT session_id) AS count FROM website_visits WHERE session_id IS NOT NULL;`;
   const [referralRow = {}] = await sql`SELECT COUNT(*) AS count FROM referrals;`;
   const [eventsRow = {}] = await sql`SELECT COUNT(*) AS count FROM website_events;`;
+  const [minutesRow = {}] =
+    await sql`SELECT COALESCE(SUM(active_ms_total), 0) AS total_ms FROM website_sessions;`;
 
   const visitsByDayRows = await sql`
     SELECT TO_CHAR(DATE_TRUNC('day', created_at), 'YYYY-MM-DD') AS day, COUNT(*) AS visits
@@ -135,6 +150,7 @@ async function getDashboardData(): Promise<DashboardData> {
       uniqueSessions: num((sessionsRow as { count?: string | number }).count),
       referralCodes: num((referralRow as { count?: string | number }).count),
       events: num((eventsRow as { count?: string | number }).count),
+      minutesSpent: Math.round(num((minutesRow as { total_ms?: string | number }).total_ms) / 60000),
     },
     visitsByDay: visitsByDayRows.map((r) => ({
       day: String((r as { day?: string }).day ?? ""),
@@ -181,9 +197,13 @@ function prettyColumnName(name: string) {
 
 function formatCellValue(key: string, value: unknown): string {
   if (value === null || value === undefined || value === "") return "-";
-  if (key === "created_at") {
+  if (key === "created_at" || key === "first_seen_at" || key === "last_seen_at") {
     const d = new Date(String(value));
     if (!Number.isNaN(d.getTime())) return d.toLocaleString();
+  }
+  if (key === "minutes_spent") {
+    const n = Number(value);
+    if (Number.isFinite(n)) return `${n.toFixed(2)} min`;
   }
   if (typeof value === "object") return JSON.stringify(value);
   return String(value);
@@ -427,6 +447,139 @@ async function getEventsTable(input: {
   return { rows: rows as RowRecord[], total, page, totalPages, pageSize: PAGE_SIZE };
 }
 
+type SessionSort = "visits" | "events" | "minutes";
+
+function asSessionSort(v: string | undefined): SessionSort {
+  if (v === "events") return "events";
+  if (v === "minutes") return "minutes";
+  return "visits";
+}
+
+async function getSessionLeaderboardTable(input: {
+  page: number;
+  q: string;
+  sort: SessionSort;
+}): Promise<TableData> {
+  await ensureAnalyticsSchema();
+  const sql = db();
+
+  const q = input.q.trim();
+  const qLike = `%${q}%`;
+
+  const [countRow = {}] = await sql`
+    SELECT COUNT(*) AS count
+    FROM website_sessions
+    WHERE
+      (${q} = '' OR CONCAT_WS(
+        ' ',
+        COALESCE(session_id, ''),
+        COALESCE(visitor_id, ''),
+        COALESCE(referral_code, ''),
+        COALESCE(country, '')
+      ) ILIKE ${qLike});
+  `;
+  const total = num((countRow as { count?: string | number }).count);
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const page = Math.min(Math.max(1, input.page), totalPages);
+  const offset = (page - 1) * PAGE_SIZE;
+
+  const rows =
+    input.sort === "events"
+      ? await sql`
+          SELECT
+            s.session_id,
+            s.visitor_id,
+            s.visit_count,
+            COALESCE(e.event_count, 0) AS event_count,
+            ROUND((s.active_ms_total::numeric) / 60000, 2) AS minutes_spent,
+            s.referral_code,
+            s.country,
+            s.first_seen_at,
+            s.last_seen_at
+          FROM website_sessions s
+          LEFT JOIN (
+            SELECT session_id, COUNT(*) AS event_count
+            FROM website_events
+            WHERE session_id IS NOT NULL
+            GROUP BY 1
+          ) e ON e.session_id = s.session_id
+          WHERE
+            (${q} = '' OR CONCAT_WS(
+              ' ',
+              COALESCE(s.session_id, ''),
+              COALESCE(s.visitor_id, ''),
+              COALESCE(s.referral_code, ''),
+              COALESCE(s.country, '')
+            ) ILIKE ${qLike})
+          ORDER BY event_count DESC, s.active_ms_total DESC, s.visit_count DESC
+          LIMIT ${PAGE_SIZE}
+          OFFSET ${offset};
+        `
+      : input.sort === "minutes"
+        ? await sql`
+            SELECT
+              s.session_id,
+              s.visitor_id,
+              s.visit_count,
+              COALESCE(e.event_count, 0) AS event_count,
+              ROUND((s.active_ms_total::numeric) / 60000, 2) AS minutes_spent,
+              s.referral_code,
+              s.country,
+              s.first_seen_at,
+              s.last_seen_at
+            FROM website_sessions s
+            LEFT JOIN (
+              SELECT session_id, COUNT(*) AS event_count
+              FROM website_events
+              WHERE session_id IS NOT NULL
+              GROUP BY 1
+            ) e ON e.session_id = s.session_id
+            WHERE
+              (${q} = '' OR CONCAT_WS(
+                ' ',
+                COALESCE(s.session_id, ''),
+                COALESCE(s.visitor_id, ''),
+                COALESCE(s.referral_code, ''),
+                COALESCE(s.country, '')
+              ) ILIKE ${qLike})
+            ORDER BY s.active_ms_total DESC, event_count DESC, s.visit_count DESC
+            LIMIT ${PAGE_SIZE}
+            OFFSET ${offset};
+          `
+        : await sql`
+            SELECT
+              s.session_id,
+              s.visitor_id,
+              s.visit_count,
+              COALESCE(e.event_count, 0) AS event_count,
+              ROUND((s.active_ms_total::numeric) / 60000, 2) AS minutes_spent,
+              s.referral_code,
+              s.country,
+              s.first_seen_at,
+              s.last_seen_at
+            FROM website_sessions s
+            LEFT JOIN (
+              SELECT session_id, COUNT(*) AS event_count
+              FROM website_events
+              WHERE session_id IS NOT NULL
+              GROUP BY 1
+            ) e ON e.session_id = s.session_id
+            WHERE
+              (${q} = '' OR CONCAT_WS(
+                ' ',
+                COALESCE(s.session_id, ''),
+                COALESCE(s.visitor_id, ''),
+                COALESCE(s.referral_code, ''),
+                COALESCE(s.country, '')
+              ) ILIKE ${qLike})
+            ORDER BY s.visit_count DESC, event_count DESC, s.active_ms_total DESC
+            LIMIT ${PAGE_SIZE}
+            OFFSET ${offset};
+          `;
+
+  return { rows: rows as RowRecord[], total, page, totalPages, pageSize: PAGE_SIZE };
+}
+
 function HiddenParams({
   params,
   exclude,
@@ -625,6 +778,7 @@ export default async function StatsPage({
   let visitsTable: TableData | null = null;
   let referralsTable: TableData | null = null;
   let eventsTable: TableData | null = null;
+  let sessionLeaderboardTable: TableData | null = null;
   let dataError: string | null = null;
 
   try {
@@ -633,6 +787,7 @@ export default async function StatsPage({
       visitsTable,
       referralsTable,
       eventsTable,
+      sessionLeaderboardTable,
     ] = await Promise.all([
       getDashboardData(),
       getVisitsTable({
@@ -653,12 +808,24 @@ export default async function StatsPage({
         eventName: parsedParams.eventName ?? "",
         country: parsedParams.eventCountry ?? "",
       }),
+      getSessionLeaderboardTable({
+        page: asPage(parsedParams.sessPage),
+        q: parsedParams.sessQ ?? "",
+        sort: asSessionSort(parsedParams.sessSort),
+      }),
     ]);
   } catch (err) {
     dataError = err instanceof Error ? err.message : "Failed to load stats.";
   }
 
-  if (!data || !visitsTable || !referralsTable || !eventsTable || dataError) {
+  if (
+    !data ||
+    !visitsTable ||
+    !referralsTable ||
+    !eventsTable ||
+    !sessionLeaderboardTable ||
+    dataError
+  ) {
     return (
       <main className="min-h-dvh bg-bg-primary px-4 py-10 md:px-6 md:py-14">
         <div className="mx-auto max-w-6xl">
@@ -699,12 +866,13 @@ export default async function StatsPage({
           </form>
         </div>
 
-        <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
           <StatCard label="Total visits" value={data.totals.visits} />
           <StatCard label="Unique visitors" value={data.totals.uniqueVisitors} />
           <StatCard label="Unique sessions" value={data.totals.uniqueSessions} />
           <StatCard label="Referral codes" value={data.totals.referralCodes} />
           <StatCard label="Tracked events" value={data.totals.events} />
+          <StatCard label="Minutes spent" value={data.totals.minutesSpent} />
         </section>
 
         <section className="grid gap-5 lg:grid-cols-2">
@@ -759,6 +927,63 @@ export default async function StatsPage({
               )}
             </div>
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <form method="get" action="/stats" className="glass rounded-2xl border border-white/10 p-4">
+            <HiddenParams params={parsedParams} exclude={["sessPage", "sessQ", "sessSort"]} />
+            <div className="mb-3 flex flex-wrap items-end gap-3">
+              <label className="flex min-w-56 flex-1 flex-col gap-1 text-xs text-text-tertiary">
+                Search session
+                <input
+                  name="sessQ"
+                  defaultValue={parsedParams.sessQ ?? ""}
+                  placeholder="session id, visitor, country, referral..."
+                  className="rounded-lg border border-white/15 bg-black/25 px-3 py-2 text-sm text-text-primary outline-none ring-accent/30 focus:ring-2"
+                />
+              </label>
+              <label className="flex min-w-64 flex-1 flex-col gap-1 text-xs text-text-tertiary">
+                Sort by
+                <select
+                  name="sessSort"
+                  defaultValue={asSessionSort(parsedParams.sessSort)}
+                  className="rounded-lg border border-white/15 bg-black/25 px-3 py-2 text-sm text-text-primary outline-none ring-accent/30 focus:ring-2"
+                >
+                  <option value="visits">Most visits by session</option>
+                  <option value="events">Most events by session</option>
+                  <option value="minutes">Most minutes spent by session</option>
+                </select>
+              </label>
+              <button
+                type="submit"
+                className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-[oklch(0.14_0.04_75)] hover:bg-accent-hover"
+              >
+                Apply
+              </button>
+              <Link
+                href={withParams(parsedParams, {
+                  sessPage: null,
+                  sessQ: null,
+                  sessSort: null,
+                })}
+                className="rounded-lg border border-white/15 px-4 py-2 text-sm text-text-secondary hover:bg-white/5 hover:text-text-primary"
+              >
+                Clear
+              </Link>
+            </div>
+            <DataTable
+              title="session_leaderboard"
+              subtitle={`${sessionLeaderboardTable.total.toLocaleString()} sessions total`}
+              columns={sessionLeaderboardColumns}
+              rows={sessionLeaderboardTable.rows}
+            />
+            <Pagination
+              params={parsedParams}
+              pageKey="sessPage"
+              page={sessionLeaderboardTable.page}
+              totalPages={sessionLeaderboardTable.totalPages}
+            />
+          </form>
         </section>
 
         <section className="space-y-4">
