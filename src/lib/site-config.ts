@@ -46,6 +46,12 @@ export function whatsappHref() {
   return `https://wa.me/${n}?text=${encodeURIComponent("Hi Aklile — I saw your site and would like to discuss a project.")}`;
 }
 
+export function whatsappProfileHref() {
+  const n = siteConfig.whatsapp.replace(/\D/g, "");
+  if (!n) return "#contact";
+  return `https://wa.me/${n}`;
+}
+
 export function mailtoHref() {
   const subject = encodeURIComponent("Project inquiry");
   return `mailto:${siteConfig.email}?subject=${subject}`;

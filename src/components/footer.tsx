@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Code2, ExternalLink, MessageCircle } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-mark";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 export function Footer() {
   return (
@@ -30,19 +31,41 @@ export function Footer() {
             Contact
           </Link>
           <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-text-primary"
+          >
+            <MessageCircle className="h-3.5 w-3.5" />
+            WhatsApp
+          </a>
+          {siteConfig.github ? (
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-text-primary"
+            >
+              <Code2 className="h-3.5 w-3.5" />
+              GitHub
+            </a>
+          ) : null}
+          <a
             href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-text-primary"
+            className="inline-flex items-center gap-1.5 hover:text-text-primary"
           >
+            <ExternalLink className="h-3.5 w-3.5" />
             LinkedIn
           </a>
           <a
             href={siteConfig.upwork}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-text-primary"
+            className="inline-flex items-center gap-1.5 hover:text-text-primary"
           >
+            <ExternalLink className="h-3.5 w-3.5" />
             Upwork reviews
           </a>
         </nav>
