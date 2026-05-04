@@ -23,6 +23,7 @@ type DashboardData = {
   }>;
   recentReferrals: Array<{
     code: string;
+    referrerName: string;
     createdAt: string;
     country: string;
     city: string;
@@ -91,6 +92,7 @@ async function getDashboardData(): Promise<DashboardData> {
   const recentReferralsRows = await sql`
     SELECT
       code,
+      COALESCE(referrer_name, '-') AS referrer_name,
       created_at,
       COALESCE(created_country, 'Unknown') AS country,
       COALESCE(created_city, '-') AS city,
@@ -129,6 +131,7 @@ async function getDashboardData(): Promise<DashboardData> {
     })),
     recentReferrals: recentReferralsRows.map((r) => ({
       code: String((r as { code?: string }).code ?? ""),
+      referrerName: String((r as { referrer_name?: string }).referrer_name ?? "-"),
       createdAt: String((r as { created_at?: string }).created_at ?? ""),
       country: String((r as { country?: string }).country ?? "Unknown"),
       city: String((r as { city?: string }).city ?? "-"),
@@ -390,6 +393,7 @@ export default async function StatsPage({
                   <thead className="bg-white/5 text-xs uppercase tracking-[0.12em] text-text-tertiary">
                     <tr>
                       <th className="px-3 py-2 text-left">Time</th>
+                      <th className="px-3 py-2 text-left">Name</th>
                       <th className="px-3 py-2 text-left">Code</th>
                       <th className="px-3 py-2 text-left">Location</th>
                       <th className="px-3 py-2 text-left">Visitor</th>
@@ -399,6 +403,7 @@ export default async function StatsPage({
                     {data.recentReferrals.map((row) => (
                       <tr key={`${row.code}-${row.createdAt}`} className="border-t border-white/6">
                         <td className="px-3 py-2 text-text-secondary">{new Date(row.createdAt).toLocaleString()}</td>
+                        <td className="px-3 py-2 text-text-primary">{row.referrerName}</td>
                         <td className="px-3 py-2 font-mono text-xs text-text-primary">{row.code}</td>
                         <td className="px-3 py-2 text-text-secondary">
                           {row.country} / {row.city}

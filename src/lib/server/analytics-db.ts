@@ -26,6 +26,7 @@ export async function ensureAnalyticsSchema() {
       await sql`
         CREATE TABLE IF NOT EXISTS referrals (
           code TEXT PRIMARY KEY,
+          referrer_name TEXT,
           created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
           created_by_visitor_id TEXT,
           created_by_session_id TEXT,
@@ -36,6 +37,11 @@ export async function ensureAnalyticsSchema() {
           created_user_agent TEXT,
           source TEXT NOT NULL DEFAULT 'website'
         );
+      `;
+
+      await sql`
+        ALTER TABLE referrals
+        ADD COLUMN IF NOT EXISTS referrer_name TEXT;
       `;
 
       await sql`

@@ -47,8 +47,20 @@ export function sanitizeReferralCode(code: string) {
   return clean;
 }
 
-export function generateReferralCode() {
+function sanitizeReferralName(name: string) {
+  const clean = name
+    .trim()
+    .toLowerCase()
+    .replace(/['"]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 40);
+  return clean || "ref";
+}
+
+export function generateReferralCode(name: string) {
+  const namePart = sanitizeReferralName(name);
   const randomPart = crypto.randomUUID().replace(/-/g, "").slice(0, 8);
   const timePart = Date.now().toString(36);
-  return `akl-${timePart}${randomPart}`;
+  return `${namePart}-${timePart}${randomPart}`;
 }

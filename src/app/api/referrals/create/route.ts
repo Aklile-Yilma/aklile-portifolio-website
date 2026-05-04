@@ -9,10 +9,23 @@ import {
   getVisitorAndSession,
 } from "@/lib/server/tracking";
 
+type CreateReferralPayload = {
+  name?: string;
+};
+
 export async function POST(request: NextRequest) {
   try {
     await ensureAnalyticsSchema();
     const sql = db();
+    const body = (await request.json().catch(() => ({}))) as CreateReferralPayload;
+    const name = body.name?.trim();
+
+    if (!name || name.length < 2 || name.length > 80) {
+      return NextResponse.json(
+        { error: "Name is required (2-80 chars)." },
+        { status: 400 },
+      );
+    }
 
     const { visitorId, sessionId } = getVisitorAndSession(request);
     const { country, region, city } = getGeoFromHeaders(request);
@@ -20,10 +33,11 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get("user-agent");
 
     for (let i = 0; i < 6; i++) {
-      const code = generateReferralCode();
+      const code = generateReferralCode(name);
       const rows = await sql`
         INSERT INTO referrals (
           code,
+          referrer_name,
           created_by_visitor_id,
           created_by_session_id,
           created_ip,
@@ -33,6 +47,7 @@ export async function POST(request: NextRequest) {
           created_user_agent
         ) VALUES (
           ${code},
+          ${name},
           ${visitorId},
           ${sessionId},
           ${ip},

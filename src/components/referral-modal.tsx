@@ -12,59 +12,72 @@ type ReferralModalProps = {
 
 const REFERRAL_ID_KEY = "aklile_referral_id_v1";
 const REFERRAL_URL_KEY = "aklile_referral_url_v1";
-
-function generateReferralCode() {
-  const randomPart =
-    typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
-      ? crypto.randomUUID().replace(/-/g, "").slice(0, 10)
-      : Math.random().toString(36).slice(2, 12);
-  const timePart = Date.now().toString(36);
-  return `akl-${timePart}${randomPart}`;
-}
+const REFERRER_NAME_KEY = "aklile_referrer_name_v1";
 
 export function ReferralModal({ open, onClose }: ReferralModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const [copied, setCopied] = useState(false);
-  const [url, setUrl] = useState(() => referralShareUrl());
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
   const [loadingLink, setLoadingLink] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const ensureReferralLink = useCallback(async () => {
     if (typeof window === "undefined") return;
 
     const storedCode = window.localStorage.getItem(REFERRAL_ID_KEY);
     const storedUrl = window.localStorage.getItem(REFERRAL_URL_KEY);
-    if (storedCode) {
+    const storedName = window.localStorage.getItem(REFERRER_NAME_KEY);
+
+    if (storedCode && storedName) {
+      setName(storedName);
       setUrl(storedUrl ?? referralShareUrl(storedCode));
+    } else {
+      window.localStorage.removeItem(REFERRAL_ID_KEY);
+      window.localStorage.removeItem(REFERRAL_URL_KEY);
+      setUrl("");
+    }
+  }, []);
+
+  const createReferralLink = useCallback(async () => {
+    if (typeof window === "undefined") return;
+    const cleanName = name.trim();
+    if (!cleanName) {
+      setError("Please enter your name.");
       return;
     }
 
     setLoadingLink(true);
+    setError(null);
     try {
       const response = await fetch("/api/referrals/create", {
         method: "POST",
+        headers: { "content-type": "application/json" },
         cache: "no-store",
+        body: JSON.stringify({ name: cleanName }),
       });
-      const data = (await response.json()) as { code?: string; url?: string };
+      const data = (await response.json()) as {
+        code?: string;
+        url?: string;
+        error?: string;
+      };
       if (response.ok && data.code) {
         const referralUrl = data.url ?? referralShareUrl(data.code);
         window.localStorage.setItem(REFERRAL_ID_KEY, data.code);
         window.localStorage.setItem(REFERRAL_URL_KEY, referralUrl);
+        window.localStorage.setItem(REFERRER_NAME_KEY, cleanName);
         setUrl(referralUrl);
+        setName(cleanName);
       } else {
-        throw new Error("API did not return a referral code.");
+        setError(data.error ?? "Could not generate referral link.");
       }
     } catch {
-      // Fallback keeps the flow usable even if DB/API is temporarily unavailable.
-      const referralCode = generateReferralCode();
-      const fallbackUrl = referralShareUrl(referralCode);
-      window.localStorage.setItem(REFERRAL_ID_KEY, referralCode);
-      window.localStorage.setItem(REFERRAL_URL_KEY, fallbackUrl);
-      setUrl(fallbackUrl);
+      setError("Network error while generating link. Please try again.");
     } finally {
       setLoadingLink(false);
     }
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     void ensureReferralLink();
@@ -86,7 +99,7 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
   }, [onClose]);
 
   const copy = useCallback(async () => {
-    if (loadingLink) return;
+    if (loadingLink || !url) return;
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -136,13 +149,39 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
         </p>
 
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="w-full">
+            <span className="mb-2 block text-xs text-text-tertiary">
+              Your name or company (required)
+            </span>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Selam or Acme Studio"
+              className="w-full rounded-xl border border-white/[0.1] bg-bg-primary/80 px-3 py-2.5 text-sm text-text-primary outline-none ring-accent/40 transition focus:ring-2"
+              maxLength={80}
+            />
+          </label>
+        </div>
+
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
           <div className="min-w-0 flex-1 truncate rounded-xl border border-white/[0.1] bg-bg-primary/80 px-3 py-2.5 text-center font-mono text-[11px] text-text-secondary sm:text-left">
-            {loadingLink ? "Generating referral link..." : url}
+            {loadingLink
+              ? "Generating referral link..."
+              : url || "Enter your name, then generate your referral link."}
           </div>
           <button
             type="button"
+            onClick={createReferralLink}
+            disabled={loadingLink || !name.trim()}
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-white/[0.18] px-4 py-2.5 text-sm font-semibold text-text-primary transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Generate
+          </button>
+          <button
+            type="button"
             onClick={copy}
-            disabled={loadingLink}
+            disabled={loadingLink || !url}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
           >
             {copied ? (
@@ -158,6 +197,8 @@ export function ReferralModal({ open, onClose }: ReferralModalProps) {
             )}
           </button>
         </div>
+
+        {error ? <p className="mt-2 text-xs text-red-300">{error}</p> : null}
       </div>
     </dialog>
   );
