@@ -12,8 +12,6 @@ export const siteConfig = {
   /** Query param appended to the site URL for referral tracking (share this link). */
   referralParam: "ref",
   referralParamValue: "direct",
-  scarcityLine:
-    "I take on 2 projects at a time to deliver my full attention and ship quality.",
   calLink: process.env.NEXT_PUBLIC_CAL_LINK ?? "demo",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "+251987307893",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "aklileyilma@gmail.com",

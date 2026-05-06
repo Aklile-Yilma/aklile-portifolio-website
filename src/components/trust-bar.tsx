@@ -40,8 +40,11 @@ export function TrustBar({ embedded = false }: TrustBarProps) {
               href={c.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-100 md:gap-3"
+              className="group relative flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-100 md:gap-3"
             >
+              <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 rounded-lg border border-white/10 bg-bg-primary/95 px-2.5 py-1.5 text-[10px] text-text-secondary opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+                {c.description}
+              </span>
               <span
                 className={
                   embedded

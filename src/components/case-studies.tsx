@@ -29,44 +29,47 @@ export function CaseStudies({ cases }: { cases: CaseStudy[] }) {
             const badge = internal ? "Get in touch" : "Visit live site";
 
             const media = (
-              <>
-                <Image
-                  src={c.showcaseImage}
-                  alt={c.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority={index === 0}
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-bg-primary/80 via-transparent to-transparent opacity-60" />
-                <span className="absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-text-primary backdrop-blur-sm">
+              <div className="grid h-full grid-cols-3 gap-2 p-2">
+                <div className="relative col-span-2 row-span-3 overflow-hidden rounded-xl">
+                  <Image
+                    src={c.coverImage}
+                    alt={`${c.title} cover`}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    priority={index === 0}
+                  />
+                </div>
+                {c.gallery.slice(1, 4).map((image, imageIndex) => (
+                  <div key={`${c.slug}-gallery-${imageIndex}`} className="relative overflow-hidden rounded-xl">
+                    <Image
+                      src={image}
+                      alt={`${c.title} preview ${imageIndex + 1}`}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes="(max-width: 1024px) 33vw, 16vw"
+                    />
+                  </div>
+                ))}
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-bg-primary/70 via-transparent to-transparent opacity-70" />
+                <span className="pointer-events-none absolute right-4 bottom-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-text-primary backdrop-blur-sm">
                   <ExternalLink className="h-3.5 w-3.5" />
                   {badge}
                 </span>
-              </>
+              </div>
             );
 
-            const shellClass = `group relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/[0.08] bg-bg-elevated transition-shadow duration-300 hover:border-accent/20 hover:shadow-[0_0_0_1px_oklch(0.82_0.145_78/0.15)] lg:aspect-[4/3] ${index % 2 === 1 ? "lg:order-2" : ""}`;
+            const shellClass =
+              "group relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/[0.08] bg-bg-elevated transition-shadow duration-300 hover:border-accent/20 hover:shadow-[0_0_0_1px_oklch(0.82_0.145_78/0.15)] lg:aspect-[4/3]";
 
             return (
               <Reveal key={c.slug}>
                 <article className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-                  {internal ? (
-                    <Link href={c.clientUrl} className={shellClass}>
-                      {media}
-                    </Link>
-                  ) : (
-                    <a
-                      href={c.clientUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={shellClass}
-                    >
-                      {media}
-                    </a>
-                  )}
+                  <Link href={`/work/${c.slug}`} className={shellClass}>
+                    {media}
+                  </Link>
 
-                  <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                  <div>
                     <h3 className="font-display text-2xl font-semibold text-text-primary md:text-3xl">
                       {c.title}
                     </h3>
@@ -88,6 +91,15 @@ export function CaseStudies({ cases }: { cases: CaseStudy[] }) {
                         </li>
                       ))}
                     </ul>
+                    <div className="mt-6">
+                      <Link
+                        href={`/work/${c.slug}`}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+                      >
+                        View project details
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
                     {c.testimonial ? (
                       <blockquote className="mt-8 border-l-2 border-accent/60 pl-5">
                         <p className="text-sm italic text-text-secondary md:text-base">

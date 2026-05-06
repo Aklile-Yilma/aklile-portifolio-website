@@ -12,7 +12,14 @@ export type CaseStudy = {
   title: string;
   id: string;
   clientUrl: string;
+  summary: string;
+  role: string;
+  approach: string[];
+  outcome: string[];
+  loomUrl?: string;
+  coverImage: string;
   showcaseImage: string;
+  gallery: string[];
   tags: string[];
   bullets: string[];
   testimonial?: CaseStudyCopy["testimonial"];
@@ -38,10 +45,25 @@ function readManifest(slug: string): Manifest | null {
   return JSON.parse(fs.readFileSync(fp, "utf8")) as Manifest;
 }
 
+function pickGalleryImages(manifest: Manifest): string[] {
+  const ok = manifest.images.filter((i) => i.filename && !i.missing);
+  return ok
+    .map((i) => i.filename)
+    .filter((file): file is string => Boolean(file))
+    .map((file) => `/portfolio/${manifest.slug}/${file}`);
+}
+
+function pickCoverImage(manifest: Manifest): string | null {
+  const ok = manifest.images.filter((i) => i.filename && !i.missing);
+  const cover = ok.find((i) => i.role === "cover")?.filename;
+  const first = cover ?? ok[0]?.filename;
+  return first ? `/portfolio/${manifest.slug}/${first}` : null;
+}
+
 function pickShowcaseImage(manifest: Manifest): string | null {
   const ok = manifest.images.filter((i) => i.filename && !i.missing);
-  const gallery = ok.find((i) => i.role === "gallery");
-  const file = gallery?.filename ?? ok[1]?.filename ?? ok[0]?.filename;
+  const gallery = ok.find((i) => i.role === "gallery")?.filename;
+  const file = gallery ?? ok[1]?.filename ?? ok[0]?.filename;
   return file ? `/portfolio/${manifest.slug}/${file}` : null;
 }
 
@@ -51,9 +73,15 @@ export function getFeaturedCaseStudies(): CaseStudy[] {
     const manifest = readManifest(slug);
     if (!manifest) continue;
     const showcaseImage = pickShowcaseImage(manifest);
-    if (!showcaseImage) continue;
+    const coverImage = pickCoverImage(manifest);
+    const gallery = pickGalleryImages(manifest);
+    if (!showcaseImage || !coverImage || gallery.length === 0) continue;
     const copy = CASE_STUDY_COPY[slug] ?? {
       clientUrl: "#",
+      summary: "Production client engagement delivered with ownership and clear communication.",
+      role: "Full-stack product engineer.",
+      approach: ["Delivered iterative features with clear communication and ownership."],
+      outcome: ["Shipped reliable improvements with production quality."],
       tags: ["Full-stack"],
       bullets: [
         "Delivered production features with clear communication and ownership.",
@@ -64,11 +92,22 @@ export function getFeaturedCaseStudies(): CaseStudy[] {
       title: manifest.title,
       id: manifest.projectId,
       clientUrl: copy.clientUrl,
+      summary: copy.summary,
+      role: copy.role,
+      approach: copy.approach,
+      outcome: copy.outcome,
+      loomUrl: copy.loomUrl,
+      coverImage,
       showcaseImage,
+      gallery,
       tags: copy.tags,
       bullets: copy.bullets,
       testimonial: copy.testimonial,
     });
   }
   return out;
+}
+
+export function getCaseStudyBySlug(slug: string): CaseStudy | null {
+  return getFeaturedCaseStudies().find((item) => item.slug === slug) ?? null;
 }

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Calendar, MessageCircle } from "lucide-react";
+import { ArrowDown, Calendar, MessageCircle, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { DevOrbit } from "@/components/dev-orbit";
@@ -55,10 +56,7 @@ export function Hero() {
             </p>
           </div>
           <span className="rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
-            Available for select projects
-          </span>
-          <span className="rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-1 text-[11px] font-medium tracking-wide text-text-secondary">
-            Risk-free · 1 week free trial
+            Available
           </span>
         </motion.div>
 
@@ -67,26 +65,33 @@ export function Hero() {
           <DevOrbit skills={heroOrbitSkills} />
 
           <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-3 pb-2 pt-6 text-center md:px-5 md:pb-3 md:pt-8">
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ opacity: 0, y: 36 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.04, ease: easeOut }}
-                className="font-display text-[clamp(2.1rem,7.5vw,4.25rem)] font-semibold leading-[1.06] tracking-tight md:leading-[1.02]"
-              >
-                <span className="block text-text-primary">{line1}</span>
-                <span className="mt-1 block bg-linear-to-r from-accent via-[oklch(0.88_0.1_72)] to-accent-2 bg-clip-text text-transparent md:mt-2">
-                  {line2}
-                </span>
-              </motion.h1>
-            </div>
+            <motion.h1
+              initial={{ opacity: 0, y: 36 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.04, ease: easeOut }}
+              className="font-display pb-[0.15em] text-[clamp(2.1rem,7.5vw,4.25rem)] font-semibold leading-[1.12] tracking-tight md:leading-[1.08]"
+            >
+              <span className="block text-text-primary">{line1}</span>
+              <span className="mt-1 block bg-linear-to-r from-accent via-[oklch(0.88_0.1_72)] to-accent-2 bg-clip-text text-transparent md:mt-2">
+                {line2}
+              </span>
+            </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.12, ease: easeOut }}
-              className="mt-4 bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-sm font-semibold text-transparent md:mt-5 md:text-base"
+              className="mt-4 inline-flex items-center gap-2 bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-sm font-semibold text-transparent md:mt-5 md:text-base"
             >
+              <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/15 ring-1 ring-accent/30">
+                <Image
+                  src="/photos/personal_profile_picture.jpeg"
+                  alt="Aklile Yilma"
+                  fill
+                  className="object-cover object-top"
+                  sizes="32px"
+                />
+              </span>
               Hi, I am Aklile Yilma.
             </motion.p>
 
@@ -97,8 +102,8 @@ export function Hero() {
               className="mt-3 max-w-xl text-base leading-relaxed text-text-secondary md:mt-4 md:text-lg md:leading-relaxed"
             >
               I help teams ship SaaS, mobile, backends, and AI automation — from LLM
-              features to reliable workflows — with clear communication and owned
-              delivery. {siteConfig.scarcityLine}
+              features to reliable workflows — with clear communication and owned delivery.
+              Six years of production delivery across US, EU, and Africa teams.
             </motion.p>
 
             <motion.div
@@ -162,9 +167,17 @@ export function Hero() {
         >
           {stats.map((s) => (
             <div key={s.label} className="md:px-4 md:first:pl-0 md:last:pr-0">
-              <p className="font-display text-lg font-semibold tabular-nums text-text-primary md:text-xl">
-                {formatStat(s.value, s.suffix, "decimals" in s ? s.decimals : undefined)}
-              </p>
+              {s.kind === "rating" ? (
+                <div className="flex items-center justify-center gap-1 text-accent">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={`${s.label}-${i}`} className="h-4 w-4 fill-current md:h-5 md:w-5" />
+                  ))}
+                </div>
+              ) : (
+                <p className="font-display text-lg font-semibold tabular-nums text-text-primary md:text-xl">
+                  {formatStat(s.value, s.suffix, "decimals" in s ? s.decimals : undefined)}
+                </p>
+              )}
               <p className="mt-1 text-xs text-text-tertiary md:text-sm">{s.label}</p>
             </div>
           ))}

@@ -55,10 +55,10 @@ export default function Home() {
       <Navbar />
       <main className="pb-20 md:pb-0">
         <Hero />
-        <Skills />
-        <Services />
-        <CaseStudies cases={cases} />
         <Testimonials />
+        <CaseStudies cases={cases} />
+        <Services />
+        <Skills />
         <Process />
         <About />
         <BookCall />

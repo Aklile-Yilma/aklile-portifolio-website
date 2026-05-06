@@ -1,4 +1,4 @@
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 import { testimonials } from "@/lib/content";
 
@@ -6,6 +6,8 @@ import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
 
 export function Testimonials() {
+  const marqueeItems = testimonials.length > 3 ? [...testimonials, ...testimonials] : testimonials;
+
   return (
     <section className="px-4 py-24 md:px-6 md:py-32">
       <div className="mx-auto max-w-6xl">
@@ -14,26 +16,53 @@ export function Testimonials() {
           title="What people say after we ship"
         />
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.06}>
-              <figure className="glass flex h-full flex-col rounded-2xl p-6 md:p-8">
-                <Quote
-                  className="h-8 w-8 text-accent/40"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-text-secondary md:text-base">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 border-t border-white/[0.08] pt-4">
-                  <p className="font-medium text-text-primary">{t.name}</p>
-                  <p className="mt-0.5 text-sm text-text-tertiary">{t.company}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        {testimonials.length > 3 ? (
+          <Reveal>
+            <div className="mt-14 overflow-hidden mask-[linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
+              <div className="animate-marquee flex w-max gap-6 pr-6">
+                {marqueeItems.map((t, i) => (
+                  <figure key={`${t.name}-${i}`} className="glass flex h-full w-[22rem] flex-col rounded-2xl p-6 md:p-8">
+                    <div className="mb-3 flex items-center gap-1 text-accent">
+                      {Array.from({ length: t.rating ?? 5 }).map((_, index) => (
+                        <Star key={`${t.name}-star-${index}`} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                    <Quote className="h-8 w-8 text-accent/40" strokeWidth={1.5} aria-hidden />
+                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-text-secondary md:text-base">
+                      &ldquo;{t.quote}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-6 border-t border-white/[0.08] pt-4">
+                      <p className="font-medium text-text-primary">{t.name}</p>
+                      <p className="mt-0.5 text-sm text-text-tertiary">{t.company}</p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ) : (
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <Reveal key={t.name} delay={i * 0.06}>
+                <figure className="glass flex h-full flex-col rounded-2xl p-6 md:p-8">
+                  <div className="mb-3 flex items-center gap-1 text-accent">
+                    {Array.from({ length: t.rating ?? 5 }).map((_, index) => (
+                      <Star key={`${t.name}-star-${index}`} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
+                  <Quote className="h-8 w-8 text-accent/40" strokeWidth={1.5} aria-hidden />
+                  <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-text-secondary md:text-base">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 border-t border-white/[0.08] pt-4">
+                    <p className="font-medium text-text-primary">{t.name}</p>
+                    <p className="mt-0.5 text-sm text-text-tertiary">{t.company}</p>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -2,25 +2,44 @@
 export type ClientBrand = {
   name: string;
   href: string;
+  description: string;
   /** Optional `/public` path (e.g. `/logos/foo.ico`) — overrides favicon lookup. */
   logoSrc?: string;
 };
 
 export const clients: ClientBrand[] = [
-  { name: "Sellify", href: "https://www.sellify.app/" },
-  { name: "MookoobMedia", href: "https://mookoobmedia.com/" },
+  {
+    name: "Sellify",
+    href: "https://www.sellify.app/",
+    description: "Built mobile seller insights workflows and production-facing integrations.",
+  },
+  {
+    name: "MookoobMedia",
+    href: "https://mookoobmedia.com/",
+    description: "Shipped product UX and scalable frontend architecture for client delivery.",
+  },
   {
     name: "Dowell Research",
     href: "https://dowellresearch.uk/",
+    description: "Supported product engineering and delivery across data-driven initiatives.",
     logoSrc: "/logos/dowell.ico",
   },
-  { name: "Eskalate", href: "https://eskalate.io/" },
+  {
+    name: "Eskalate",
+    href: "https://eskalate.io/",
+    description: "Contributed to modern product experiences with clear execution and handoff.",
+  },
   {
     name: "Hire Armada",
     href: "https://www.linkedin.com/company/hirearmada/",
+    description: "Delivered platform features and polished interfaces for recruitment workflows.",
     logoSrc: "/logos/hire-armada.jpg",
   },
-  { name: "A2SV", href: "https://a2sv.org/" },
+  {
+    name: "A2SV",
+    href: "https://a2sv.org/",
+    description: "Built AI-focused features and cross-functional product experiences at scale.",
+  },
 ];
 
 export function clientFaviconSrc(href: string): string {
@@ -119,7 +138,8 @@ export const skillCards = [
   },
   {
     title: "AI & LLM features",
-    description: "RAG, evals, streaming UX, and guardrails — shipped, not slide decks.",
+    description:
+      "RAG, MCP-aware tool use, evals, streaming UX, and guardrails — shipped to production.",
     icon: "sparkles" as const,
   },
   {
@@ -130,10 +150,9 @@ export const skillCards = [
 ] as const;
 
 export const stats = [
-  { value: 20, suffix: "+", label: "Projects delivered" },
-  { value: 100, suffix: "%", label: "Job success score" },
-  { value: 5.0, suffix: "", label: "Client rating", decimals: 1 },
-  { value: 6, suffix: "+", label: "Years experience" },
+  { value: 20, suffix: "+", label: "Projects shipped", kind: "number" as const },
+  { value: 5, suffix: "", label: "Client rating", kind: "rating" as const },
+  { value: 6, suffix: "+", label: "Years experience", kind: "number" as const },
 ] as const;
 
 export const services = [
@@ -158,13 +177,13 @@ export const services = [
   {
     title: "AI-native product engineering",
     description:
-      "LLM features, RAG, evals, and UX that make models safe and useful in production — not demos.",
+      "LLM features, RAG, evals, and MCP-enabled workflows that make AI useful in production.",
     icon: "sparkles" as const,
   },
   {
     title: "AI workflow automation",
     description:
-      "Connect systems with reliable automations: document pipelines, alerts, internal tools, and human-in-the-loop flows.",
+      "Agentic automations and tool-calling pipelines: docs, alerts, ops tooling, and human-in-the-loop flows.",
     icon: "bot" as const,
   },
 ];
@@ -175,18 +194,35 @@ export const testimonials = [
       "I was extremely satisfied with the collaboration with Aklile. The developer perfectly understood my needs and was able to translate them into concrete and effective solutions. Communication was smooth and the work was delivered on time.",
     name: "Mikias V.",
     company: "MookoobMedia, Belgium",
+    rating: 5,
   },
   {
     quote:
       "He was incredibly patient and took the time to break down JavaScript concepts in a way that made complex logic much easier to understand — guiding step by step instead of just giving answers.",
     name: "Van",
     company: "Mentoring client",
+    rating: 5,
   },
   {
     quote:
       "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
     name: "Samiksha B.",
     company: "Product, Sellify · United States",
+    rating: 5,
+  },
+  {
+    quote:
+      "I was extremely satisfied with the collaboration with Aklile. The developer perfectly understood my needs and translated them into concrete and effective solutions.",
+    name: "Mikias V.",
+    company: "MookoobMedia, Belgium",
+    rating: 5,
+  },
+  {
+    quote:
+      "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
+    name: "Samiksha B.",
+    company: "Product, Sellify · United States",
+    rating: 5,
   },
 ];
 

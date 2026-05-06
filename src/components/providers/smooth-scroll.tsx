@@ -24,9 +24,10 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: 0.09,
-        duration: 1.15,
+        lerp: 0.18,
+        duration: 0.6,
         smoothWheel: true,
+        smoothTouch: false,
         autoRaf: true,
       }}
     >
