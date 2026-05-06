@@ -175,7 +175,7 @@ export function Hero() {
                 </div>
               ) : (
                 <p className="font-display text-lg font-semibold tabular-nums text-text-primary md:text-xl">
-                  {formatStat(s.value, s.suffix, "decimals" in s ? s.decimals : undefined)}
+                  {formatStat(s.value, s.suffix)}
                 </p>
               )}
               <p className="mt-1 text-xs text-text-tertiary md:text-sm">{s.label}</p>
