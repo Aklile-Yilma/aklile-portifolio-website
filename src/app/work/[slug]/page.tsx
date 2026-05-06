@@ -38,7 +38,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   return (
     <main className="px-4 pb-20 pt-28 md:px-6 md:pt-32">
       <div className="mx-auto max-w-6xl">
-        <Link href="/#work" className="text-sm text-text-secondary transition-colors hover:text-accent">
+        <Link href="/" className="text-sm text-text-secondary transition-colors hover:text-accent">
           ← Back to selected work
         </Link>
 
@@ -128,7 +128,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
             </p>
             <div className="mt-4 space-y-2">
               <Link
-                href="/#contact"
+                href="/"
                 className="inline-flex w-full items-center justify-center rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
               >
                 Book a discovery call

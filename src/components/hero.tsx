@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import { DevOrbit } from "@/components/dev-orbit";
 import { trackEvent } from "@/lib/analytics";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { TrustBar } from "@/components/trust-bar";
 import { heroOrbitSkills, stats } from "@/lib/content";
 import { mailtoHref, siteConfig, whatsappHref } from "@/lib/site-config";
@@ -84,7 +85,12 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.12, ease: easeOut }}
               className="mt-4 inline-flex items-center gap-2 text-sm font-semibold md:mt-5 md:text-base"
             >
-              <Link href="#about" className="inline-flex items-center gap-2" aria-label="Go to about section">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2"
+                aria-label="Go to about section"
+                onClick={() => scrollToSection("about")}
+              >
                 <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/15 ring-1 ring-accent/30">
                   <Image
                     src="/photos/personal_profile_picture.jpeg"
@@ -97,7 +103,7 @@ export function Hero() {
                 <span className="bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-transparent">
                   Hi, I am Aklile Yilma.
                 </span>
-              </Link>
+              </button>
             </motion.p>
 
             <motion.p
@@ -117,20 +123,21 @@ export function Hero() {
               transition={{ duration: 0.55, delay: 0.2, ease: easeOut }}
               className="mt-4 flex w-full max-w-lg flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap md:mt-5"
             >
-              <Link
-                href="#contact"
-                onClick={() =>
+              <button
+                type="button"
+                onClick={() => {
+                  scrollToSection("contact");
                   trackEvent({
                     name: "cta_book_call_click",
                     location: "hero",
-                    href: "#contact",
-                  })
-                }
+                    href: "contact",
+                  });
+                }}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-[oklch(0.14_0.04_75)] shadow-[0_0_44px_-10px_var(--accent-glow)] transition-[transform,background,box-shadow] duration-200 hover:scale-[1.02] hover:bg-accent-hover hover:shadow-[0_0_52px_-8px_var(--accent-glow)] active:scale-[0.99] sm:w-auto"
               >
                 <Calendar className="h-5 w-5" />
                 Book a discovery call
-              </Link>
+              </button>
               <Link
                 href={whatsappHref()}
                 target="_blank"

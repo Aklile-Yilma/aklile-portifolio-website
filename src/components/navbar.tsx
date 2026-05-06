@@ -7,15 +7,16 @@ import { useState } from "react";
 
 import { BrandMark } from "@/components/brand-mark";
 import { trackEvent } from "@/lib/analytics";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { ReferralModal } from "@/components/referral-modal";
 
 const links = [
-  { href: "#work", label: "Work" },
-  { href: "#skills", label: "Skills" },
-  { href: "#services", label: "Services" },
-  { href: "#process", label: "Process" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { id: "work", label: "Work" },
+  { id: "skills", label: "Skills" },
+  { id: "services", label: "Services" },
+  { id: "process", label: "Process" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -25,23 +26,25 @@ export function Navbar() {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 px-4 pt-4 md:px-6">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/[0.09] bg-[oklch(0.12_0.012_75/0.78)] px-4 py-3 backdrop-blur-xl md:px-6">
-        <Link
-          href="#top"
+        <button
+          type="button"
+          onClick={() => scrollToSection("top")}
           aria-label="Home"
           className="flex items-center rounded-lg text-text-primary outline-offset-4 transition-opacity hover:opacity-90"
         >
           <BrandMark className="h-10 w-10 shrink-0" />
-        </Link>
+        </button>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
+            <button
+              type="button"
+              key={l.id}
+              onClick={() => scrollToSection(l.id)}
               className="text-sm text-text-secondary transition-colors hover:text-text-primary"
             >
               {l.label}
-            </Link>
+            </button>
           ))}
         </nav>
 
@@ -59,19 +62,20 @@ export function Navbar() {
           >
             Refer me
           </button>
-          <Link
-            href="#contact"
-            onClick={() =>
+          <button
+            type="button"
+            onClick={() => {
+              scrollToSection("contact");
               trackEvent({
                 name: "cta_book_call_click",
                 location: "navbar",
-                href: "#contact",
-              })
-            }
+                href: "contact",
+              });
+            }}
             className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-[oklch(0.14_0.04_75)] transition-colors hover:bg-accent-hover"
           >
             Book a call
-          </Link>
+          </button>
         </div>
 
         <button
@@ -96,14 +100,17 @@ export function Navbar() {
           >
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
+                <button
+                  type="button"
+                  key={l.id}
+                  onClick={() => {
+                    scrollToSection(l.id);
+                    setOpen(false);
+                  }}
                   className="rounded-xl px-3 py-3 text-text-primary hover:bg-white/5"
-                  onClick={() => setOpen(false)}
                 >
                   {l.label}
-                </Link>
+                </button>
               ))}
               <button
                 type="button"
@@ -119,20 +126,21 @@ export function Navbar() {
               >
                 Refer me
               </button>
-              <Link
-                href="#contact"
+              <button
+                type="button"
                 className="mt-2 rounded-full bg-accent py-3 text-center text-sm font-medium text-[oklch(0.14_0.04_75)]"
                 onClick={() => {
+                  scrollToSection("contact");
                   trackEvent({
                     name: "cta_book_call_click",
                     location: "mobile_menu",
-                    href: "#contact",
+                    href: "contact",
                   });
                   setOpen(false);
                 }}
               >
                 Book a call
-              </Link>
+              </button>
             </nav>
           </motion.div>
         ) : null}

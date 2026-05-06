@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 
 import { BrandMark } from "@/components/brand-mark";
+import { scrollToSection } from "@/lib/scroll-to-section";
 import { siteConfig, whatsappHref } from "@/lib/site-config";
 
 export function Footer() {
@@ -20,18 +23,18 @@ export function Footer() {
             </div>
           </div>
           <nav className="flex flex-wrap gap-6 text-sm text-text-secondary">
-            <Link href="#work" className="hover:text-text-primary">
+            <button type="button" onClick={() => scrollToSection("work")} className="hover:text-text-primary">
               Work
-            </Link>
-            <Link href="#skills" className="hover:text-text-primary">
+            </button>
+            <button type="button" onClick={() => scrollToSection("skills")} className="hover:text-text-primary">
               Skills
-            </Link>
-            <Link href="#services" className="hover:text-text-primary">
+            </button>
+            <button type="button" onClick={() => scrollToSection("services")} className="hover:text-text-primary">
               Services
-            </Link>
-            <Link href="#contact" className="hover:text-text-primary">
+            </button>
+            <button type="button" onClick={() => scrollToSection("contact")} className="hover:text-text-primary">
               Contact
-            </Link>
+            </button>
           </nav>
           <p className="text-xs text-text-tertiary">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
