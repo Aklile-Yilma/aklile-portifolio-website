@@ -3,6 +3,7 @@ import { DM_Sans, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { VisitTracker } from "@/components/analytics/visit-tracker";
+import { ScrollToTopOnRoute } from "@/components/providers/scroll-to-top-on-route";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { siteConfig } from "@/lib/site-config";
 
@@ -89,6 +90,7 @@ export default function RootLayout({
         className={`${dmSans.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
       >
         <SmoothScroll>
+          <ScrollToTopOnRoute />
           <Suspense fallback={null}>
             <VisitTracker />
           </Suspense>
