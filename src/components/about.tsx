@@ -75,13 +75,13 @@ export function About() {
 
           <Reveal delay={0.1}>
             <div className="space-y-5">
-              <div className="relative overflow-hidden rounded-2xl border border-white/[0.12] bg-bg-secondary/50 shadow-[0_0_44px_-12px_var(--accent-glow)]">
+              <div className="relative aspect-square min-h-[18rem] overflow-hidden rounded-2xl border border-white/[0.12] bg-bg-secondary/50 shadow-[0_0_44px_-12px_var(--accent-glow)]">
                 <Image
                   src="/photos/personal_profile_picture.jpeg"
                   alt="Portrait of Aklile Yilma"
-                  width={640}
-                  height={640}
-                  className="h-auto w-full object-cover object-top"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-top"
                 />
               </div>
               <div className="glass rounded-2xl p-8 md:p-10">

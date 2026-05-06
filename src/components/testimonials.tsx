@@ -13,7 +13,7 @@ export function Testimonials() {
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           kicker="Client feedback"
-          title="What people say after we ship"
+          title="What people say after I ship"
         />
 
         {testimonials.length > 3 ? (

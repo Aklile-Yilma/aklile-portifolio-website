@@ -81,18 +81,22 @@ export function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.12, ease: easeOut }}
-              className="mt-4 inline-flex items-center gap-2 bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-sm font-semibold text-transparent md:mt-5 md:text-base"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold md:mt-5 md:text-base"
             >
-              <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/15 ring-1 ring-accent/30">
-                <Image
-                  src="/photos/personal_profile_picture.jpeg"
-                  alt="Aklile Yilma"
-                  fill
-                  className="object-cover object-top"
-                  sizes="32px"
-                />
-              </span>
-              Hi, I am Aklile Yilma.
+              <Link href="#about" className="inline-flex items-center gap-2" aria-label="Go to about section">
+                <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/15 ring-1 ring-accent/30">
+                  <Image
+                    src="/photos/personal_profile_picture.jpeg"
+                    alt="Aklile Yilma"
+                    fill
+                    className="object-cover object-top"
+                    sizes="32px"
+                  />
+                </span>
+                <span className="bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-transparent">
+                  Hi, I am Aklile Yilma.
+                </span>
+              </Link>
             </motion.p>
 
             <motion.p
@@ -163,18 +167,18 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.42, duration: 0.65, ease: easeOut }}
-          className="mx-auto mt-4 grid max-w-4xl grid-cols-2 justify-items-center gap-3 border-t border-white/[0.07] pt-5 text-center md:mt-5 md:grid-cols-4 md:gap-0 md:divide-x md:divide-white/[0.06] md:pt-6"
+          className="mx-auto mt-4 grid max-w-4xl grid-cols-1 justify-items-center gap-3 border-t border-white/[0.07] pt-5 text-center sm:grid-cols-3 md:mt-5 md:gap-0 md:divide-x md:divide-white/[0.06] md:pt-6"
         >
           {stats.map((s) => (
-            <div key={s.label} className="md:px-4 md:first:pl-0 md:last:pr-0">
+            <div key={s.label} className="flex w-full flex-col items-center md:px-4 md:first:pl-0 md:last:pr-0">
               {s.kind === "rating" ? (
-                <div className="flex items-center justify-center gap-1 text-accent">
+                <div className="flex h-6 items-center justify-center gap-1 text-accent md:h-7">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={`${s.label}-${i}`} className="h-4 w-4 fill-current md:h-5 md:w-5" />
                   ))}
                 </div>
               ) : (
-                <p className="font-display text-lg font-semibold tabular-nums text-text-primary md:text-xl">
+                <p className="flex h-6 items-center font-display text-lg font-semibold tabular-nums text-text-primary md:h-7 md:text-xl">
                   {formatStat(s.value, s.suffix)}
                 </p>
               )}

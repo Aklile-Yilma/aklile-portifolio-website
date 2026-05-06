@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink, MessageCircle } from "lucide-react";
 
 import { getCaseStudyBySlug, getFeaturedCaseStudies } from "@/lib/case-studies";
+import { WorkGallery } from "@/components/work-gallery";
 import { mailtoHref, whatsappHref } from "@/lib/site-config";
 
 type WorkPageProps = {
@@ -118,20 +118,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               </ul>
             </article>
 
-            <article className="grid gap-3 sm:grid-cols-2">
-              {caseStudy.gallery.map((image, index) => (
-                <div key={`${caseStudy.slug}-${index}`} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-bg-secondary">
-                  <Image
-                    src={image}
-                    alt={`${caseStudy.title} screenshot ${index + 1}`}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    loading={index < 2 ? "eager" : "lazy"}
-                  />
-                </div>
-              ))}
-            </article>
+            <WorkGallery title={caseStudy.title} images={caseStudy.gallery} slug={caseStudy.slug} />
           </div>
 
           <aside className="glass top-24 rounded-2xl p-5 lg:sticky">
