@@ -67,14 +67,59 @@ export function Hero() {
           <DevOrbit skills={heroOrbitSkills} />
 
           <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-3 pb-2 pt-6 text-center md:px-5 md:pb-3 md:pt-8">
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.04, ease: easeOut }}
+              className="mb-4 inline-flex items-center gap-4 text-[clamp(1.375rem,4.2vw,1.875rem)] font-semibold leading-tight md:mb-5 md:gap-5 md:text-[clamp(1.75rem,3.5vw,2.5rem)]"
+              aria-label="Go to about section"
+              onClick={() => scrollToSection("about")}
+            >
+              <span className="hero-avatar-shell relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-full md:h-24 md:w-24">
+                <span
+                  className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[132%] -translate-x-1/2 -translate-y-1/2"
+                  aria-hidden
+                >
+                  <span className="hero-avatar-border-rotate block h-full w-full rounded-full" />
+                </span>
+                <span className="absolute inset-[2px] z-[1] overflow-hidden rounded-full ring-1 ring-inset ring-white/15">
+                  <Image
+                    src="/photos/personal_profile_picture.jpeg"
+                    alt="Aklile Yilma"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 72px, 96px"
+                  />
+                </span>
+              </span>
+              <span className="inline-flex flex-wrap items-baseline justify-start gap-x-2 gap-y-1 text-left">
+                <span className="text-text-primary">Hi, I am</span>
+                <span className="relative inline-block">
+                  <span className="hero-name-shimmer relative z-0 font-semibold">
+                    Aklile Yilma.
+                  </span>
+                  <span
+                    className="pointer-events-none absolute -inset-x-3 -inset-y-4 z-10"
+                    aria-hidden
+                  >
+                    <span className="hero-sparkle-dot absolute left-0 top-1/4 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_var(--accent-glow)]" />
+                    <span className="hero-sparkle-dot hero-sparkle-dot--d1 absolute right-1 top-0 h-1 w-1 rounded-full bg-[oklch(0.95_0.06_85)] shadow-[0_0_8px_oklch(0.9_0.12_78/0.9)]" />
+                    <span className="hero-sparkle-dot hero-sparkle-dot--d2 absolute bottom-1 left-[18%] h-1 w-1 rounded-full bg-accent-2/90 shadow-[0_0_8px_oklch(0.55_0.09_230/0.85)]" />
+                    <span className="hero-sparkle-dot hero-sparkle-dot--d3 absolute bottom-0 right-[8%] h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_var(--accent-glow)]" />
+                  </span>
+                </span>
+              </span>
+            </motion.button>
+
             <motion.h1
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.04, ease: easeOut }}
-              className="font-display pb-[0.15em] text-[clamp(2.1rem,7.5vw,4.25rem)] font-semibold leading-[1.12] tracking-tight md:leading-[1.08]"
+              transition={{ duration: 0.75, delay: 0.1, ease: easeOut }}
+              className="font-display mx-auto inline-flex max-w-full flex-nowrap items-baseline justify-center gap-x-1.5 pb-[0.15em] text-[clamp(0.75rem,2.2vw,1.35rem)] font-semibold leading-snug tracking-tight md:leading-snug"
             >
-              <span className="block text-text-primary">{line1}</span>
-              <span className="mt-1 block bg-linear-to-r from-accent via-[oklch(0.88_0.1_72)] to-accent-2 bg-clip-text text-transparent md:mt-2">
+              <span className="shrink-0 text-text-primary">{line1}</span>
+              <span className="shrink-0 bg-linear-to-r from-accent via-[oklch(0.88_0.1_72)] to-accent-2 bg-clip-text text-transparent">
                 {line2}
               </span>
             </motion.h1>
@@ -82,34 +127,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.12, ease: easeOut }}
-              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold md:mt-5 md:text-base"
-            >
-              <button
-                type="button"
-                className="inline-flex items-center gap-2"
-                aria-label="Go to about section"
-                onClick={() => scrollToSection("about")}
-              >
-                <span className="relative h-8 w-8 overflow-hidden rounded-full border border-white/15 ring-1 ring-accent/30">
-                  <Image
-                    src="/photos/personal_profile_picture.jpeg"
-                    alt="Aklile Yilma"
-                    fill
-                    className="object-cover object-top"
-                    sizes="32px"
-                  />
-                </span>
-                <span className="bg-linear-to-r from-[oklch(0.9_0.09_85)] via-[oklch(0.84_0.12_72)] to-[oklch(0.72_0.13_58)] bg-clip-text text-transparent">
-                  Hi, I am Aklile Yilma.
-                </span>
-              </button>
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16, ease: easeOut }}
+              transition={{ duration: 0.6, delay: 0.22, ease: easeOut }}
               className="mt-3 max-w-xl text-base leading-relaxed text-text-secondary md:mt-4 md:text-lg md:leading-relaxed"
             >
               I help teams ship SaaS, mobile, backends, and AI automation — from LLM
@@ -120,7 +138,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.2, ease: easeOut }}
+              transition={{ duration: 0.55, delay: 0.28, ease: easeOut }}
               className="mt-4 flex w-full max-w-lg flex-col items-center justify-center gap-2.5 sm:flex-row sm:flex-wrap md:mt-5"
             >
               <button

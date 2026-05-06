@@ -65,10 +65,6 @@ export function CaseStudies({ cases }: { cases: CaseStudy[] }) {
             return (
               <Reveal key={c.slug}>
                 <article className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-                  <Link href={`/work/${c.slug}`} className={shellClass}>
-                    {media}
-                  </Link>
-
                   <div>
                     <h3 className="font-display text-2xl font-semibold text-text-primary md:text-3xl">
                       {c.title}
@@ -111,6 +107,10 @@ export function CaseStudies({ cases }: { cases: CaseStudy[] }) {
                       </blockquote>
                     ) : null}
                   </div>
+
+                  <Link href={`/work/${c.slug}`} className={shellClass}>
+                    {media}
+                  </Link>
                 </article>
               </Reveal>
             );
