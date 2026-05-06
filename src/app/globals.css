@@ -131,49 +131,10 @@ html.lenis body {
   will-change: background-position;
 }
 
-@keyframes hero-sparkle-twinkle {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(0.65);
-  }
-  35% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  55% {
-    opacity: 0.55;
-    transform: scale(0.85);
-  }
-}
-
-.hero-sparkle-dot {
-  animation: hero-sparkle-twinkle 2.2s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
-.hero-sparkle-dot--d1 {
-  animation-delay: 0.45s;
-}
-
-.hero-sparkle-dot--d2 {
-  animation-delay: 0.9s;
-}
-
-.hero-sparkle-dot--d3 {
-  animation-delay: 1.35s;
-}
-
-/* Hero profile: rotating accent ring + soft glow pulse */
-@keyframes hero-avatar-border-spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-.hero-avatar-border-rotate {
+/* Hero profile: static accent ring + soft glow pulse */
+.hero-avatar-border-ring {
   background: conic-gradient(
-    from 0deg,
+    from 220deg,
     oklch(0.58 0.08 230 / 0.55),
     oklch(0.82 0.145 78),
     oklch(0.9 0.1 72),
@@ -181,8 +142,6 @@ html.lenis body {
     oklch(0.78 0.13 78),
     oklch(0.58 0.08 230 / 0.55)
   );
-  animation: hero-avatar-border-spin 14s linear infinite;
-  will-change: transform;
 }
 
 @keyframes hero-avatar-glow-pulse {

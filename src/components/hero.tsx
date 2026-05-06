@@ -78,11 +78,9 @@ export function Hero() {
             >
               <span className="hero-avatar-shell relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-full md:h-24 md:w-24">
                 <span
-                  className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[132%] -translate-x-1/2 -translate-y-1/2"
+                  className="hero-avatar-border-ring pointer-events-none absolute inset-0 rounded-full"
                   aria-hidden
-                >
-                  <span className="hero-avatar-border-rotate block h-full w-full rounded-full" />
-                </span>
+                />
                 <span className="absolute inset-[2px] z-[1] overflow-hidden rounded-full ring-1 ring-inset ring-white/15">
                   <Image
                     src="/photos/personal_profile_picture.jpeg"
@@ -95,20 +93,7 @@ export function Hero() {
               </span>
               <span className="inline-flex flex-wrap items-baseline justify-start gap-x-2 gap-y-1 text-left">
                 <span className="text-text-primary">Hi, I am</span>
-                <span className="relative inline-block">
-                  <span className="hero-name-shimmer relative z-0 font-semibold">
-                    Aklile Yilma.
-                  </span>
-                  <span
-                    className="pointer-events-none absolute -inset-x-3 -inset-y-4 z-10"
-                    aria-hidden
-                  >
-                    <span className="hero-sparkle-dot absolute left-0 top-1/4 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_var(--accent-glow)]" />
-                    <span className="hero-sparkle-dot hero-sparkle-dot--d1 absolute right-1 top-0 h-1 w-1 rounded-full bg-[oklch(0.95_0.06_85)] shadow-[0_0_8px_oklch(0.9_0.12_78/0.9)]" />
-                    <span className="hero-sparkle-dot hero-sparkle-dot--d2 absolute bottom-1 left-[18%] h-1 w-1 rounded-full bg-accent-2/90 shadow-[0_0_8px_oklch(0.55_0.09_230/0.85)]" />
-                    <span className="hero-sparkle-dot hero-sparkle-dot--d3 absolute bottom-0 right-[8%] h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_var(--accent-glow)]" />
-                  </span>
-                </span>
+                <span className="hero-name-shimmer font-semibold">Aklile Yilma.</span>
               </span>
             </motion.button>
 
