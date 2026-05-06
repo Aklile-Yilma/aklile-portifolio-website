@@ -1,4 +1,7 @@
-import { Quote, Star } from "lucide-react";
+"use client";
+
+import { ChevronRight, Quote, Star } from "lucide-react";
+import { useRef } from "react";
 
 import { testimonials } from "@/lib/content";
 
@@ -6,7 +9,14 @@ import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
 
 export function Testimonials() {
-  const marqueeItems = testimonials.length > 3 ? [...testimonials, ...testimonials] : testimonials;
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollRight = () => {
+    const node = scrollerRef.current;
+    if (!node) return;
+    const amount = Math.max(280, Math.floor(node.clientWidth * 0.75));
+    node.scrollBy({ left: amount, behavior: "smooth" });
+  };
 
   return (
     <section className="px-4 py-24 md:px-6 md:py-32">
@@ -18,17 +28,31 @@ export function Testimonials() {
 
         {testimonials.length > 3 ? (
           <Reveal>
-            <div className="mt-14 overflow-hidden mask-[linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
-              <div className="animate-marquee flex w-max gap-6 pr-6">
-                {marqueeItems.map((t, i) => (
-                  <figure key={`${t.name}-${i}`} className="glass flex h-full w-[22rem] flex-col rounded-2xl p-6 md:p-8">
+            <div className="relative mt-14">
+              <button
+                type="button"
+                onClick={scrollRight}
+                className="absolute top-1/2 right-2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-bg-primary/85 p-2 text-text-tertiary backdrop-blur-sm transition-colors hover:border-accent/35 hover:text-text-primary"
+                aria-label="Scroll testimonials right"
+              >
+                <ChevronRight className="h-4 w-4 text-accent/90" aria-hidden />
+              </button>
+              <div
+                ref={scrollerRef}
+                className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [scrollbar-width:thin] [scrollbar-color:oklch(0.32_0.02_82)_transparent]"
+              >
+                {testimonials.map((t, i) => (
+                  <figure
+                    key={`${t.name}-${i}`}
+                    className="glass flex h-[23.5rem] w-[22rem] shrink-0 snap-start flex-col rounded-2xl p-6 md:h-[25rem] md:p-8"
+                  >
                     <div className="mb-3 flex items-center gap-1 text-accent">
                       {Array.from({ length: t.rating ?? 5 }).map((_, index) => (
                         <Star key={`${t.name}-star-${index}`} className="h-4 w-4 fill-current" />
                       ))}
                     </div>
                     <Quote className="h-8 w-8 text-accent/40" strokeWidth={1.5} aria-hidden />
-                    <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-text-secondary md:text-base">
+                    <blockquote className="mt-4 flex-1 overflow-y-auto pr-1 text-sm leading-relaxed text-text-secondary md:text-base">
                       &ldquo;{t.quote}&rdquo;
                     </blockquote>
                     <figcaption className="mt-6 border-t border-white/[0.08] pt-4">
