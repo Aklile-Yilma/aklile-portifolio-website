@@ -6,6 +6,9 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 
 const HOME_SCROLL_STORAGE_KEY = "aklile-portfolio:home-scroll-y";
 
+/** After work → home, ignore Lenis scroll reads briefly (stale work offset would overwrite storage). */
+const HOME_SAVE_SUPPRESS_MS = 700;
+
 function isWorkDetailPath(path: string): boolean {
   return /^\/work\/[^/]+$/.test(path);
 }
@@ -36,6 +39,8 @@ function restoreHomeScroll(lenis: ReturnType<typeof useLenis>) {
   const y = readStoredHomeScroll();
   if (y == null) return;
 
+  lenis?.resize();
+
   if (lenis) {
     const max = Math.max(0, lenis.limit);
     lenis.scrollTo(Math.min(y, max), { immediate: true });
@@ -53,8 +58,9 @@ export function ScrollToTopOnRoute() {
   const pathname = usePathname();
   const lenis = useLenis();
   const prevPathnameRef = useRef<string | null>(null);
+  const suppressHomeScrollSaveUntilRef = useRef(0);
 
-  // Persist vertical scroll while on the homepage so we can restore after /work/*.
+  // Persist vertical scroll while on the homepage (only on real scroll — no eager save on mount).
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -62,6 +68,9 @@ export function ScrollToTopOnRoute() {
     const save = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
+        if (performance.now() < suppressHomeScrollSaveUntilRef.current) {
+          return;
+        }
         const y = lenis ? Math.round(lenis.scroll) : Math.round(window.scrollY);
         try {
           sessionStorage.setItem(HOME_SCROLL_STORAGE_KEY, String(y));
@@ -70,8 +79,6 @@ export function ScrollToTopOnRoute() {
         }
       });
     };
-
-    save();
 
     if (lenis) {
       const unsub = lenis.on("scroll", save);
@@ -109,8 +116,16 @@ export function ScrollToTopOnRoute() {
     }
 
     if (prevWork && next === "/") {
-      restoreHomeScroll(lenis);
-      requestAnimationFrame(() => restoreHomeScroll(lenis));
+      suppressHomeScrollSaveUntilRef.current = performance.now() + HOME_SAVE_SUPPRESS_MS;
+
+      const run = () => restoreHomeScroll(lenis);
+      run();
+      requestAnimationFrame(() => {
+        run();
+        requestAnimationFrame(() => {
+          run();
+        });
+      });
     }
   }, [pathname, lenis]);
 
