@@ -17,22 +17,28 @@ export const CASE_STUDY_COPY: Record<string, CaseStudyCopy> = {
   aladia: {
     clientUrl: "https://aladia.io/",
     summary:
-      "AI-native product experience centered on conversational workflows and trustworthy UX.",
-    role: "Led frontend architecture and AI interaction delivery for production use.",
+      "Integrated e-learning ecosystem connecting expert instructors with professional learners through a scalable, product-led SaaS experience.",
+    role: "Senior Fullstack Developer",
     approach: [
-      "Designed assistant-style UX patterns with clear guardrails and accessible states.",
-      "Implemented streaming-ready interactions with optimistic updates and graceful failure handling.",
-      "Structured modular prompt and feature-flag patterns for rapid iteration.",
+      "Led end-to-end platform engineering across frontend and backend, shaping the architecture for a multi-role learning marketplace that could scale without slowing product velocity.",
+      "Built core learning workflows including on-demand course delivery, real-time chat, and interactive calendar scheduling to support both instructor and learner daily operations.",
+      "Designed high-conversion instructor profile and discovery experiences, then connected them to actionable monetization tooling with a financial dashboard for live income and spending visibility.",
     ],
     outcome: [
-      "Shipped a production-grade AI experience that is easier to extend and measure.",
-      "Improved iteration speed through modular architecture and analytics hooks.",
+      "Delivered a production-ready e-learning SaaS foundation with strong UX and dependable full-stack architecture for long-term growth.",
+      "Enabled smoother instructor-to-learner matching and repeat engagement through reliable communication, scheduling, and revenue-tracking flows.",
     ],
-    tags: ["Next.js", "AI UX", "Product"],
+    tags: [
+      "Elearning",
+      "SaaS Development",
+      "Vue.js",
+      "NestJS",
+      "Full-Stack Development",
+    ],
     bullets: [
-      "Conversational and assistant-style flows with fast, accessible UI and clear guardrails.",
-      "Streaming-friendly patterns, optimistic states, and resilient error handling for AI-backed actions.",
-      "Built for iteration: feature flags, modular prompts, and metrics hooks for product learning loops.",
+      "Led architecture and implementation as Senior Fullstack Developer for a full-stack e-learning marketplace.",
+      "Shipped high-impact core features: on-demand courses, real-time chat, interactive calendars, and rich instructor profiles.",
+      "Built monetization visibility tooling with a financial dashboard for live income/spending insights and better business decisions.",
     ],
   },
   "hakim-hub-ai-health-assistant": {
