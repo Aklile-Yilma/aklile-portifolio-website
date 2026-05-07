@@ -8,14 +8,49 @@
       "index": 0,
       "uuid": "aladia-cover",
       "role": "cover",
-      "filename": "aladia-1.png",
+      "filename": "aladia_1.png",
       "missing": false
     },
     {
       "index": 1,
       "uuid": "aladia-gallery-1",
       "role": "gallery",
-      "filename": "aladia-2.png",
+      "filename": "aladia_2.png",
+      "missing": false
+    },
+    {
+      "index": 2,
+      "uuid": "aladia-gallery-2",
+      "role": "gallery",
+      "filename": "aladia_3.png",
+      "missing": false
+    },
+    {
+      "index": 3,
+      "uuid": "aladia-gallery-3",
+      "role": "gallery",
+      "filename": "aladia_4.png",
+      "missing": false
+    },
+    {
+      "index": 4,
+      "uuid": "aladia-gallery-4",
+      "role": "gallery",
+      "filename": "aladia_5.png",
+      "missing": false
+    },
+    {
+      "index": 5,
+      "uuid": "aladia-gallery-5",
+      "role": "gallery",
+      "filename": "aladia_6.png",
+      "missing": false
+    },
+    {
+      "index": 6,
+      "uuid": "aladia-gallery-6",
+      "role": "gallery",
+      "filename": "aladia_7.png",
       "missing": false
     }
   ]

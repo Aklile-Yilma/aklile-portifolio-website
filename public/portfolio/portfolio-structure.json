@@ -159,7 +159,15 @@
       "id": "aladia-portfolio",
       "slug": "aladia",
       "title": "Aladia — AI-native product experience",
-      "files": ["aladia-1.png", "aladia-2.png"],
+      "files": [
+        "aladia_1.png",
+        "aladia_2.png",
+        "aladia_3.png",
+        "aladia_4.png",
+        "aladia_5.png",
+        "aladia_6.png",
+        "aladia_7.png"
+      ],
       "skippedMissing": []
     }
   ],
