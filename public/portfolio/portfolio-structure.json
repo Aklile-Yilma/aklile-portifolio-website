@@ -2,23 +2,6 @@
   "generatedAt": "2026-04-13T16:43:19.364Z",
   "projects": [
     {
-      "id": "2038560801786142720",
-      "slug": "walmart-seller-map",
-      "title": "Walmart Seller Map",
-      "files": [
-        "29078172-b08d-4de9-977a-e4deb5b23d68.jpg",
-        "44c4d27c-e0af-4006-9160-a93d41f4af84.png",
-        "94ed42f5-bfb6-4c1e-87ff-a2ea1e9d94a7.png",
-        "6aa988e0-bb63-4a4e-b840-ffd66f8a53db.png",
-        "47ee4f9b-cf31-4c2c-bbef-8135f48a214f.png",
-        "15173784-8bd2-47c5-9608-a3f5ef073907.png",
-        "01458d61-c2a0-45af-8935-21de19e1fc63.png",
-        "0a36c27a-2970-4962-a67d-1e122415676c.png",
-        "15b271ad-1b39-480e-9921-9c69436d1c9b.png"
-      ],
-      "skippedMissing": []
-    },
-    {
       "id": "1975185590490152960",
       "slug": "akilconnect",
       "title": "AkilConnect",
@@ -45,20 +28,6 @@
         "8a1860c2-410e-474d-a348-7b9473ef7e07.png",
         "2da29e15-de17-464c-8f27-4bffdf88e024.png",
         "1d5a7cc7-158e-47f0-af6c-a5eeb4bf1fb9.png"
-      ],
-      "skippedMissing": []
-    },
-    {
-      "id": "1957481752350748672",
-      "slug": "sellify-mobile-app-walmart-seller-insights",
-      "title": "Sellify Mobile App: Walmart Seller Insights",
-      "files": [
-        "b3bb99c7-c6d2-4580-b88e-912cd6a14dd9.jpg",
-        "c548b439-5f50-4a0c-b1ac-c383975d3f37.jpg",
-        "7c6d8da8-ccce-4713-8837-bf0f337e12bf.jpg",
-        "10981e08-2997-4ee6-9b42-2c4a03131356.jpg",
-        "7bf4825f-87d9-4ec3-8a51-d4e45bcfeab6.jpg",
-        "0953100f-328a-4c08-a88c-775fd81034d9.jpg"
       ],
       "skippedMissing": []
     },

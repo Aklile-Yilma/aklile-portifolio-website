@@ -62,60 +62,60 @@ export const CASE_STUDY_COPY: Record<string, CaseStudyCopy> = {
       "Collaboration with Africa-to-Silicon Valley engineers on a high-impact community product.",
     ],
   },
-  "sellify-mobile-app-walmart-seller-insights": {
-    clientUrl: "https://www.sellify.app/",
-    summary:
-      "Seller insights mobile app for Walmart workflows with production integrations.",
-    role: "Owned React Native feature delivery across auth, device flows, and API integration.",
-    approach: [
-      "Implemented cross-platform app flows with Firebase auth and backend integration.",
-      "Built camera/barcode and seller workflow screens with resilient state handling.",
-      "Prioritized release stability and maintainability for ongoing product velocity.",
-    ],
-    outcome: [
-      "Shipped a production-ready app used in day-to-day seller operations.",
-      "Improved reliability and iteration speed with cleaner architecture.",
-    ],
-    tags: ["React Native", "SaaS", "Mobile"],
-    bullets: [
-      "Cross-platform seller insights app for Walmart-related workflows.",
-      "Firebase auth, camera & barcode flows, and resilient API integration.",
-      "Shipped for production use with the Sellify team (Sellify LLC).",
-    ],
-    testimonial: {
-      quote:
-        "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
-      name: "Samiksha B.",
-      company: "Product, Sellify · United States",
-    },
-  },
-  "walmart-seller-map": {
-    clientUrl: "https://www.sellify.app/",
-    summary:
-      "Full-stack geospatial product for seller planning with fast map interactions at scale.",
-    role: "Built web and API layers for map-heavy workflows and paid access controls.",
-    approach: [
-      "Implemented MapLibre experiences with clustering, search, and dark/light basemaps.",
-      "Integrated geocoding and payload optimization for performance at larger datasets.",
-      "Connected Stripe-gated tiers for monetization-ready feature access.",
-    ],
-    outcome: [
-      "Shipped performant geospatial UX with clear upgrade paths.",
-      "Enabled business-ready mapping workflows with integrated billing.",
-    ],
-    tags: ["Next.js", "NestJS", "Maps"],
-    bullets: [
-      "Full-stack MapLibre experience: clusters, search, light/dark basemaps.",
-      "Pelias-backed geocoding, zstd payloads, and Stripe-gated tiers.",
-      "Built to stay fast with large marker sets and clear upgrade paths.",
-    ],
-    testimonial: {
-      quote:
-        "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
-      name: "Samiksha B.",
-      company: "Product, Sellify · United States",
-    },
-  },
+  // "sellify-mobile-app-walmart-seller-insights": {
+  //   clientUrl: "https://www.sellify.app/",
+  //   summary:
+  //     "Seller insights mobile app for Walmart workflows with production integrations.",
+  //   role: "Owned React Native feature delivery across auth, device flows, and API integration.",
+  //   approach: [
+  //     "Implemented cross-platform app flows with Firebase auth and backend integration.",
+  //     "Built camera/barcode and seller workflow screens with resilient state handling.",
+  //     "Prioritized release stability and maintainability for ongoing product velocity.",
+  //   ],
+  //   outcome: [
+  //     "Shipped a production-ready app used in day-to-day seller operations.",
+  //     "Improved reliability and iteration speed with cleaner architecture.",
+  //   ],
+  //   tags: ["React Native", "SaaS", "Mobile"],
+  //   bullets: [
+  //     "Cross-platform seller insights app for Walmart-related workflows.",
+  //     "Firebase auth, camera & barcode flows, and resilient API integration.",
+  //     "Shipped for production use with the Sellify team (Sellify LLC).",
+  //   ],
+  //   testimonial: {
+  //     quote:
+  //       "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
+  //     name: "Samiksha B.",
+  //     company: "Product, Sellify · United States",
+  //   },
+  // },
+  // "walmart-seller-map": {
+  //   clientUrl: "https://www.sellify.app/",
+  //   summary:
+  //     "Full-stack geospatial product for seller planning with fast map interactions at scale.",
+  //   role: "Built web and API layers for map-heavy workflows and paid access controls.",
+  //   approach: [
+  //     "Implemented MapLibre experiences with clustering, search, and dark/light basemaps.",
+  //     "Integrated geocoding and payload optimization for performance at larger datasets.",
+  //     "Connected Stripe-gated tiers for monetization-ready feature access.",
+  //   ],
+  //   outcome: [
+  //     "Shipped performant geospatial UX with clear upgrade paths.",
+  //     "Enabled business-ready mapping workflows with integrated billing.",
+  //   ],
+  //   tags: ["Next.js", "NestJS", "Maps"],
+  //   bullets: [
+  //     "Full-stack MapLibre experience: clusters, search, light/dark basemaps.",
+  //     "Pelias-backed geocoding, zstd payloads, and Stripe-gated tiers.",
+  //     "Built to stay fast with large marker sets and clear upgrade paths.",
+  //   ],
+  //   testimonial: {
+  //     quote:
+  //       "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
+  //     name: "Samiksha B.",
+  //     company: "Product, Sellify · United States",
+  //   },
+  // },
   "mookoobmedia-all-in-one-local-business-growth-platform": {
     clientUrl: "https://mookoobmedia.com/",
     summary:
@@ -169,8 +169,8 @@ export const CASE_STUDY_COPY: Record<string, CaseStudyCopy> = {
 export const FEATURED_CASE_SLUGS = [
   "aladia",
   "hakim-hub-ai-health-assistant",
-  "sellify-mobile-app-walmart-seller-insights",
-  "walmart-seller-map",
+  // "sellify-mobile-app-walmart-seller-insights",
+  // "walmart-seller-map",
   "mookoobmedia-all-in-one-local-business-growth-platform",
   "akilconnect",
 ] as const;

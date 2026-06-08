@@ -8,11 +8,11 @@ export type ClientBrand = {
 };
 
 export const clients: ClientBrand[] = [
-  {
-    name: "Sellify",
-    href: "https://www.sellify.app/",
-    description: "Built mobile seller insights workflows and production-facing integrations.",
-  },
+  // {
+  //   name: "Sellify",
+  //   href: "https://www.sellify.app/",
+  //   description: "Built mobile seller insights workflows and production-facing integrations.",
+  // },
   {
     name: "MookoobMedia",
     href: "https://mookoobmedia.com/",
@@ -203,13 +203,13 @@ export const testimonials = [
     company: "Mentoring client",
     rating: 5,
   },
-  {
-    quote:
-      "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
-    name: "Samiksha B.",
-    company: "Product, Sellify · United States",
-    rating: 5,
-  },
+  // {
+  //   quote:
+  //     "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
+  //   name: "Samiksha B.",
+  //   company: "Product, Sellify · United States",
+  //   rating: 5,
+  // },
   {
     quote:
       "I was extremely satisfied with the collaboration with Aklile. The developer perfectly understood my needs and translated them into concrete and effective solutions.",
@@ -217,13 +217,13 @@ export const testimonials = [
     company: "MookoobMedia, Belgium",
     rating: 5,
   },
-  {
-    quote:
-      "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
-    name: "Samiksha B.",
-    company: "Product, Sellify · United States",
-    rating: 5,
-  },
+  // {
+  //   quote:
+  //     "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
+  //   name: "Samiksha B.",
+  //   company: "Product, Sellify · United States",
+  //   rating: 5,
+  // },
 ];
 
 export const processSteps = [
