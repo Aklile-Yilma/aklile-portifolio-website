@@ -56,10 +56,10 @@ export function Hero() {
               <span>US &amp; EU-friendly hours</span>
             </p>
           </div>
-          <span className="inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
+          {/* <span className="inline-flex items-center rounded-full border border-accent/25 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
             <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.7)]" />
             Available
-          </span>
+          </span> */}
         </motion.div>
 
         {/* Center block + orbiting devicons (layout inspired by eskalate.io hero). */}

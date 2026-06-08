@@ -210,20 +210,6 @@ export const testimonials = [
   //   company: "Product, Sellify · United States",
   //   rating: 5,
   // },
-  {
-    quote:
-      "I was extremely satisfied with the collaboration with Aklile. The developer perfectly understood my needs and translated them into concrete and effective solutions.",
-    name: "Mikias V.",
-    company: "MookoobMedia, Belgium",
-    rating: 5,
-  },
-  // {
-  //   quote:
-  //     "An exceptionally skilled developer who consistently delivers clean, efficient, and reliable solutions beyond expectations.",
-  //   name: "Samiksha B.",
-  //   company: "Product, Sellify · United States",
-  //   rating: 5,
-  // },
 ];
 
 export const processSteps = [

@@ -4,7 +4,6 @@ import { Briefcase, Code2, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { scrollToSection } from "@/lib/scroll-to-section";
 import { siteConfig } from "@/lib/site-config";
 
 import { Reveal } from "./reveal";
@@ -87,7 +86,7 @@ export function About() {
                   className="object-cover object-top"
                 />
               </div>
-              <div className="glass rounded-2xl p-6 md:p-7">
+              {/* <div className="glass rounded-2xl p-6 md:p-7">
                 <h3 className="font-display text-lg font-semibold text-text-primary">
                   Availability
                 </h3>
@@ -101,7 +100,7 @@ export function About() {
                 >
                   Schedule a call
                 </button>
-              </div>
+              </div> */}
             </div>
           </Reveal>
         </div>
